@@ -8,10 +8,10 @@ from api import views
 app_name = 'api'
 
 router = routers.DefaultRouter()
-# router.register(r'Person', views.PersonViewSet, basename='person')
-# router.register(r'Movies', views.MovieViewSet, basename='movie')
-# router.register(r'List', views.ListViewSet, basename='list')
-# router.register(r'Quote', views.QuoteViewSet, basename='quote')
+router.register(r'Cliente', views.ClienteViewSet, basename='cliente')
+router.register(r'Servicio', views.ServicioViewSet, basename='servicio')
+router.register(r'Producto', views.ProductoViewSet, basename='producto')
+router.register(r'Cotizacion', views.CotizacionViewSet, basename='cotizacion')
 
 urlpatterns = [
     url(r'^', include(router.urls)),

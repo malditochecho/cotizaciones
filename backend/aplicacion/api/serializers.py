@@ -1,10 +1,26 @@
-# from rest_framework import serializers
+from rest_framework import serializers
+from cotizaciones import models
 
-# from cotizaciones import models
+
+class ClienteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Cliente
+        fields = ('empresa', 'contacto', 'telefonoContacto', 'correoContacto')
 
 
-# class CotizacionSerializer(serializers.HyperlinkedModelSerializer):
+class ServicioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Servicio
+        fields = ('nombre', 'descripcion', 'valorMetroCuadrado',)
 
-#     class Meta:
-#         model = models.Cotizacion
-#         fields = ['empresa', 'contacto']
+
+class ProductoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Producto
+        fields = ('producto', 'marca', 'fabricante', 'valorUnidad',)
+
+
+class CotizacionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Cotizacion
+        fields = ('empresa', 'servicio', 'metrosCuadrados', 'producto', 'cantidadProducto',)
