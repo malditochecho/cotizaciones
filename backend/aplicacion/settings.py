@@ -25,7 +25,7 @@ SECRET_KEY = 'e%kp2$=e1j)wx-6xa$^u-@f1)taw+)lc-)wakar_7b3571r^be'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -97,9 +97,9 @@ WSGI_APPLICATION = 'aplicacion.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'sample',
-        'USER': 'postgres',
-        'PASSWORD' : 'root',
+        'NAME': 'cotizaciones',
+        'USER': 'admin',
+        'PASSWORD' : 'admin',
         'HOST':'localhost',
         'PORT' : '5432',
     },
