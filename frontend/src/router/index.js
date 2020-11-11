@@ -13,19 +13,24 @@ const routes = [
     component: Home,
   },
   {
-    path: "/clientes",
-    name: "Clientes",
-    component: () => import("../views/Clientes.vue"),
-  },
-  {
     path: "/cotizaciones",
     name: "Cotizaciones",
     component: () => import("../views/Cotizaciones.vue"),
   },
   {
-    path: "/mantenedores",
-    name: "Mantenedores",
-    component: () => import("../views/Mantenedores.vue"),
+    path: "/clientes",
+    name: "MantenedorClientes",
+    component: () => import("../views/MantenedorClientes.vue"),
+  },
+  {
+    path: "/productos",
+    name: "MantenedorProductos",
+    component: () => import("../views/MantenedorProductos.vue"),
+  },
+  {
+    path: "/servicios",
+    name: "MantenedorServicios",
+    component: () => import("../views/MantenedorServicios.vue"),
   },
   {
     path: "/about",

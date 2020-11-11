@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <NavBar />
-    <div id="nav">
+    <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/clientes">Clientes</router-link> |
       <router-link to="/cotizaciones">Cotizaciones</router-link> |
       <router-link to="/mantenedores">Crear cliente</router-link>
-    </div>
+    </div> -->
     <router-view />
   </div>
 </template>

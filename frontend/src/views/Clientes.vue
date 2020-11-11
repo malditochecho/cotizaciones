@@ -1,34 +1,15 @@
 <template>
   <div>
-    <p v-for="cliente in clientes" :key="cliente.id">{{ cliente.empresa }}</p>
+    <ListarClientes />
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import ListarClientes from "@/components/Clientes/ListarClientes.vue";
 
 export default {
-  name: "app",
-  data() {
-    return {
-      clientes: [],
-    };
-  },
-  mounted: function() {
-    this.listarClientes();
-  },
-  methods: {
-    listarClientes: function() {
-      axios.get("http://127.0.0.1:8000/api/Cliente/").then(
-        (response) => {
-          this.clientes = response.data;
-          console.log("API ok!");
-        },
-        (error) => {
-          console.log("API con error: ".concat(error));
-        }
-      );
-    },
+  components: {
+    ListarClientes,
   },
 };
 </script>
