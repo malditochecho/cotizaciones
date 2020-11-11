@@ -10,12 +10,18 @@ class ClienteSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url', 'empresa', 'contacto', 'telefonoContacto', 'correoContacto')
 
 
-class ServicioSerializer(serializers.HyperlinkedModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name='api:servicio-detail')
+# class ServicioSerializer(serializers.HyperlinkedModelSerializer):
+#     url = serializers.HyperlinkedIdentityField(view_name='api:servicio-detail')
 
+#     class Meta:
+#         model = models.Servicio
+#         fields = ('url', 'nombre', 'descripcion', 'valorMetroCuadrado',)
+
+
+class ServicioSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Servicio
-        fields = ('url', 'nombre', 'descripcion', 'valorMetroCuadrado',)
+        fields = ('id', 'nombre', 'descripcion', 'valorMetroCuadrado',)
 
 
 class ProductoSerializer(serializers.HyperlinkedModelSerializer):
