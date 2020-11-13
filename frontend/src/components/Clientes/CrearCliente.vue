@@ -62,7 +62,7 @@ export default {
   methods: {
     onSubmit: function() {
       axios
-        .post("http://127.0.0.1:8000/api/Cliente/", { empresa: this.empresa })
+        .post("http://127.0.0.1:8000/api/Cliente/", { empresa: this.empresa, contacto: this.contacto, telefonoContacto: this.telefonoContacto, correoContacto: this.correoContacto })
         .then((response) => console.log(response.status))
         .catch(function(error) {
           console.log(error);
