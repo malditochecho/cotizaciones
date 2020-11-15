@@ -6,15 +6,15 @@
           <!-- Nombre empresa -->
           <b-form-group
             id="input-group-1"
-            label="Nombre cliente:"
+            label="Nombre servicio:"
             label-for="input-1"
             description="We'll never share your email with anyone else."
           >
             <b-form-input
               id="input-1"
-              v-model="empresa"
+              v-model="nombre"
               type="text"
-              placeholder="Ingresa nombre del cliente"
+              placeholder="Ingresa nombre del servicio"
             ></b-form-input>
           </b-form-group>
 
@@ -26,8 +26,23 @@
           >
             <b-form-input
               id="input-2"
-              v-model="contacto"
-              placeholder="Ingresa el email"
+              v-model="descripcion"
+              type="text"
+              placeholder="Ingrese una descripcion para el servicio"
+            ></b-form-input>
+          </b-form-group>
+
+          <!-- Nombre empresa -->
+          <b-form-group
+            id="input-group-2"
+            label="Your Name:"
+            label-for="input-2"
+          >
+            <b-form-input
+              id="input-2"
+              v-model="valorMetroCuadrado"
+              type="text"
+              placeholder="Ingrese valor del servicio por metro cuadrado (m2)"
             ></b-form-input>
           </b-form-group>
 
@@ -46,20 +61,23 @@ export default {
   data() {
     return {
       clientes: [],
-      empresa: "",
-      contacto: "",
-      telefonoContacto: "",
-      correoContacto: "",
+      nombre: "",
+      descripcion: "",
+      valorMetroCuadrado: "",
     };
   },
   methods: {
-    onSubmit: function() {
+    onSubmit: function () {
       axios
-        .post("http://127.0.0.1:8000/api/Cliente/", { empresa: this.empresa })
-        .then(function(response) {
+        .post("http://127.0.0.1:8000/api/Servicio/", {
+          nombre: this.nombre,
+          descripcion: this.descripcion,
+          valorMetroCuadrado: this.valorMetroCuadrado,
+        })
+        .then(function (response) {
           console.log(response);
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     },
