@@ -38,7 +38,7 @@ class CotizacionSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Cotizacion
         fields = ('url', 'id', 'empresa', 'servicio', 'metrosCuadrados', 'producto', 'cantidadProducto',)
-        depth = 2
+        depth = 0
 
 
 """

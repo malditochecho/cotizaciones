@@ -27,3 +27,7 @@ class CotizacionViewSet(viewsets.ModelViewSet):
     queryset = models.Cotizacion.objects.all()
     serializer_class = serializers.CotizacionSerializer
     # permission_classes = [IsAuthenticated]
+
+
+def generarPDF():
+    pass

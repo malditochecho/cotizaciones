@@ -8,6 +8,23 @@
         offset-md="2"
         lg="8"
         offset-lg="2"
+        xl="6"
+        offset-xl="3"
+      >
+        <CrearCotizacion />
+      </b-col>
+    </b-row>
+
+    <hr />
+
+    <b-row>
+      <b-col
+        xs="12"
+        sm="10"
+        md="8"
+        offset-md="2"
+        lg="8"
+        offset-lg="2"
         xl="8"
         offset-xl="2"
       >
@@ -18,11 +35,13 @@
 </template>
 
 <script>
+import CrearCotizacion from "@/components/Cotizaciones/CrearCotizacion.vue";
 import ListarCotizaciones from "@/components/Cotizaciones/ListarCotizaciones.vue";
 
 export default {
   name: "Cotizaciones",
   components: {
+    CrearCotizacion,
     ListarCotizaciones,
   },
 };

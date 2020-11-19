@@ -12,7 +12,7 @@
     >
       <template v-slot:cell(editar)="{ item }">
         <!-- nick es a la columna a la cual se va a aplicar, y item es un nombre q se va a usar para llamarlo en la sgte linea -->
-        <b-button @click="editarCotizacion(item)">Ver</b-button>
+        <b-button @click="editarCotizacion(item)">Ver detalle</b-button>
         <!-- item es equivalente a un elemento de items -->
       </template>
     </b-table>
@@ -35,7 +35,6 @@ export default {
         "producto.producto",
         "cantidadProducto",
         { key: "editar", label: "" },
-        { key: "eliminar", label: "" },
       ],
     };
   },
@@ -47,7 +46,6 @@ export default {
       axios.get("http://localhost:8000/api/Cotizacion/").then(
         (response) => {
           this.cotizaciones = response.data;
-          console.log("API ok!");
           console.log("Cotizaciones listados exitosamente.");
         },
         (error) => {

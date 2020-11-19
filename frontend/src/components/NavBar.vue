@@ -51,3 +51,9 @@
     </b-navbar>
   </div>
 </template>
+
+<style>
+a {
+  color: black;
+}
+</style>
