@@ -29,7 +29,7 @@ class ProductoSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = models.Producto
-        fields = ('url', 'producto', 'marca', 'fabricante', 'valorUnidad',)
+        fields = ('url', 'id', 'producto', 'marca', 'fabricante', 'valorUnidad',)
 
 
 class CotizacionSerializer(serializers.ModelSerializer):

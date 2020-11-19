@@ -1,42 +1,33 @@
 <template>
   <div class="p-5">
-    <h1>Nuevo cliente</h1>
+    <h1>Nuevo servicio</h1>
     <b-form @submit="onSubmit">
-      <!-- Nombre empresa -->
+      <!-- Nombre servicio -->
       <b-form-group id="input-group-1" label-for="input-1">
         <b-form-input
           id="input-1"
-          v-model="empresa"
+          v-model="nombre"
           type="text"
           required
-          placeholder="Ingresa nombre del cliente"
+          placeholder="Ingresa nombre del servicio"
         ></b-form-input>
       </b-form-group>
 
-      <!-- Nombre empresa -->
+      <!-- Descripcion servicio -->
       <b-form-group id="input-group-2" label-for="input-2">
         <b-form-input
           id="input-2"
-          v-model="contacto"
-          placeholder="Ingresa el contacto"
+          v-model="descripcion"
+          placeholder="Ingresa la descripcion"
         ></b-form-input>
       </b-form-group>
 
-      <!-- Email -->
+      <!-- valorMetroCuadrado -->
       <b-form-group id="input-group-2" label-for="input-2">
         <b-form-input
           id="input-2"
-          v-model="correoContacto"
-          placeholder="Ingresa el email"
-        ></b-form-input>
-      </b-form-group>
-
-      <!-- Telefono -->
-      <b-form-group id="input-group-2" label-for="input-2">
-        <b-form-input
-          id="input-2"
-          v-model="telefonoContacto"
-          placeholder="Ingresa el telefono"
+          v-model="valorMetroCuadrado"
+          placeholder="Ingresa el valor del metro cuadrado"
         ></b-form-input>
       </b-form-group>
 
@@ -49,24 +40,22 @@
 import axios from "axios";
 
 export default {
-  name: "CrearCliente",
+  name: "CrearServicio",
   data() {
     return {
-      clientes: [],
-      empresa: "",
-      contacto: "",
-      telefonoContacto: "",
-      correoContacto: "",
+      servicios: [],
+      nombre: "",
+      descripcion: "",
+      valorMetroCuadrado: "",
     };
   },
   methods: {
     onSubmit: function() {
       axios
-        .post("http://127.0.0.1:8000/api/Cliente/", {
-          empresa: this.empresa,
-          contacto: this.contacto,
-          telefonoContacto: this.telefonoContacto,
-          correoContacto: this.correoContacto,
+        .post("http://127.0.0.1:8000/api/Servicio/", {
+          nombre: this.nombre,
+          descripcion: this.descripcion,
+          valorMetroCuadrado: this.valorMetroCuadrado,
         })
         .then((response) => console.log(response.status))
         .catch(function(error) {

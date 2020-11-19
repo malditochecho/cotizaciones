@@ -2,7 +2,7 @@
   <div>
     <b-navbar toggleable="lg" type="light" variant="dark">
       <!-- Logo -->
-      <b-navbar-brand mx-auto href="https://orregohnos.cl/">
+      <b-navbar-brand mx-auto href="http://127.0.0.1:8080/">
         <img
           src="https://orregohnos.cl/wp-content/uploads/2020/09/new-logo-bigger-01.png"
           width="110"
@@ -21,23 +21,31 @@
         <b-navbar-nav class="ml-auto">
           <!-- Boton crear cotizacion -->
           <b-nav-item href="#">
-            <b-button size="md" variant="success" href="/cotizaciones"
-              >Cotizaciones
+            <b-button size="md" variant="success"
+              ><router-link to="/cotizaciones">Cotizaciones</router-link>
             </b-button>
           </b-nav-item>
 
-          <b-dropdown
-            id="dropdown-1"
-            text="Administrar"
-            class="m-md-2"
-            variant="warning"
-          >
-            <b-dropdown-item href="/clientes">Clientes</b-dropdown-item>
-            <b-dropdown-item href="/productos">Productos</b-dropdown-item>
-            <b-dropdown-item href="/servicios">Servicios</b-dropdown-item>
-            <b-dropdown-divider></b-dropdown-divider>
-            <b-dropdown-item href="#">Otros</b-dropdown-item>
-          </b-dropdown>
+          <b-nav-item>
+            <b-dropdown
+              id="dropdown-1"
+              text="Administrar"
+              class="md"
+              variant="warning"
+            >
+              <b-dropdown-item>
+                <router-link to="/clientes">Clientes</router-link>
+              </b-dropdown-item>
+              <b-dropdown-item>
+                <router-link to="/productos">Productos</router-link>
+              </b-dropdown-item>
+              <b-dropdown-item>
+                <router-link to="/servicios">Servicios</router-link>
+              </b-dropdown-item>
+              <b-dropdown-divider></b-dropdown-divider>
+              <b-dropdown-item href="#">Otros</b-dropdown-item>
+            </b-dropdown>
+          </b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

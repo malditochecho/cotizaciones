@@ -1,20 +1,36 @@
 <template>
   <div>
-    <b-container class="bv-example-row">
-      <b-row class="my-5">
-        <b-col cols="8" offset-sm="3" sm="6">
-          <CrearCliente />
-        </b-col>
-      </b-row>
+    <b-row>
+      <b-col
+        xs="12"
+        sm="10"
+        md="8"
+        offset-md="2"
+        lg="6"
+        offset-lg="3"
+        xl="4"
+        offset-xl="4"
+      >
+        <CrearCliente />
+      </b-col>
+    </b-row>
 
-      <hr />
+    <hr />
 
-      <b-row class="my-5">
-        <b-col>
-          <ListarClientes />
-        </b-col>
-      </b-row>
-    </b-container>
+    <b-row>
+      <b-col
+        xs="12"
+        sm="10"
+        md="8"
+        offset-md="2"
+        lg="8"
+        offset-lg="2"
+        xl="8"
+        offset-xl="2"
+      >
+        <ListarClientes />
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -23,7 +39,7 @@ import CrearCliente from "@/components/Clientes/CrearCliente.vue";
 import ListarClientes from "@/components/Clientes/ListarClientes.vue";
 
 export default {
-  name: "app",
+  name: "MantenedorClientes",
   components: {
     CrearCliente,
     ListarClientes,

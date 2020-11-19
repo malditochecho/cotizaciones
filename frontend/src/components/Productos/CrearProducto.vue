@@ -1,42 +1,42 @@
 <template>
   <div class="p-5">
-    <h1>Nuevo cliente</h1>
+    <h1>Nuevo producto</h1>
     <b-form @submit="onSubmit">
-      <!-- Nombre empresa -->
+      <!-- Nombre producto -->
       <b-form-group id="input-group-1" label-for="input-1">
         <b-form-input
           id="input-1"
-          v-model="empresa"
+          v-model="producto"
           type="text"
           required
-          placeholder="Ingresa nombre del cliente"
+          placeholder="Ingresa producto del producto"
         ></b-form-input>
       </b-form-group>
 
-      <!-- Nombre empresa -->
+      <!-- Marca producto -->
       <b-form-group id="input-group-2" label-for="input-2">
         <b-form-input
           id="input-2"
-          v-model="contacto"
-          placeholder="Ingresa el contacto"
+          v-model="marca"
+          placeholder="Ingresa la marca"
         ></b-form-input>
       </b-form-group>
 
-      <!-- Email -->
+      <!-- Fabricante producto -->
       <b-form-group id="input-group-2" label-for="input-2">
         <b-form-input
           id="input-2"
-          v-model="correoContacto"
-          placeholder="Ingresa el email"
+          v-model="fabricante"
+          placeholder="Ingresa el fabricante"
         ></b-form-input>
       </b-form-group>
 
-      <!-- Telefono -->
+      <!-- Valor unidad del producto -->
       <b-form-group id="input-group-2" label-for="input-2">
         <b-form-input
           id="input-2"
-          v-model="telefonoContacto"
-          placeholder="Ingresa el telefono"
+          v-model="valorUnidad"
+          placeholder="Ingresa el valor unidad"
         ></b-form-input>
       </b-form-group>
 
@@ -49,24 +49,23 @@
 import axios from "axios";
 
 export default {
-  name: "CrearCliente",
+  name: "CrearProducto",
   data() {
     return {
-      clientes: [],
-      empresa: "",
-      contacto: "",
-      telefonoContacto: "",
-      correoContacto: "",
+      producto: "",
+      marca: "",
+      fabricante: "",
+      valorUnidad: "",
     };
   },
   methods: {
     onSubmit: function() {
       axios
-        .post("http://127.0.0.1:8000/api/Cliente/", {
-          empresa: this.empresa,
-          contacto: this.contacto,
-          telefonoContacto: this.telefonoContacto,
-          correoContacto: this.correoContacto,
+        .post("http://127.0.0.1:8000/api/Producto/", {
+          producto: this.producto,
+          marca: this.marca,
+          fabricante: this.fabricante,
+          valorUnidad: this.valorUnidad,
         })
         .then((response) => console.log(response.status))
         .catch(function(error) {

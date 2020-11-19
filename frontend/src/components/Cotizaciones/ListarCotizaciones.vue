@@ -1,24 +1,19 @@
 <template>
   <div class="p-5">
-    <h1>Clientes</h1>
+    <h1>Cotizaciones</h1>
     <b-table
-      :id="clientes.id"
+      :id="cotizaciones.id"
       bordered
       small
       head-variant="dark"
       hover
-      :items="clientes"
+      :items="cotizaciones"
       :fields="fields"
     >
       <template v-slot:cell(editar)="{ item }">
         <!-- nick es a la columna a la cual se va a aplicar, y item es un nombre q se va a usar para llamarlo en la sgte linea -->
-        <b-button @click="editarCliente(item)">Editar</b-button>
+        <b-button @click="editarCotizacion(item)">Ver</b-button>
         <!-- item es equivalente a un elemento de items -->
-      </template>
-
-      <!-- A virtual composite column -->
-      <template v-slot:cell(eliminar)="{ item }">
-        <b-button @click="eliminarCliente(item)">Eliminar</b-button>
       </template>
     </b-table>
   </div>
@@ -28,46 +23,47 @@
 import axios from "axios";
 
 export default {
-  name: "ListarClientes",
+  name: "ListarCotizaciones",
   data() {
     return {
-      clientes: [],
+      cotizaciones: [],
       fields: [
         "id",
-        "empresa",
-        "contacto",
-        "correoContacto",
-        "telefonoContacto",
+        "empresa.empresa",
+        "servicio.nombre",
+        "metrosCuadrados",
+        "producto.producto",
+        "cantidadProducto",
         { key: "editar", label: "" },
         { key: "eliminar", label: "" },
       ],
     };
   },
   mounted: function() {
-    this.listarClientes();
+    this.listarCotizaciones();
   },
   methods: {
-    listarClientes: function() {
-      axios.get("http://localhost:8000/api/Cliente/").then(
+    listarCotizaciones: function() {
+      axios.get("http://localhost:8000/api/Cotizacion/").then(
         (response) => {
-          this.clientes = response.data;
+          this.cotizaciones = response.data;
           console.log("API ok!");
-          console.log("Clientes listados exitosamente.");
+          console.log("Cotizaciones listados exitosamente.");
         },
         (error) => {
           console.log("API con error: ".concat(error));
         }
       );
     },
-    eliminarCliente: function(item) {
-      console.log("eliminando cliente " + item.empresa);
+    eliminarCotizacion: function(item) {
+      console.log("eliminando cotizacion " + item.empresa);
       axios
         .delete(item.url)
         .then((response) => console.log("Status: " + response.status))
         .catch((error) => console.log(error));
     },
-    // editarCliente: function(item) {
-    //   console.log("editando cliente " + item.empresa);
+    // editarCotizacion: function(item) {
+    //   console.log("editando cotizacion " + item.empresa);
     //   this.;
     // },
   },
