@@ -32,6 +32,7 @@ export default {
     return {
       clientes: [],
       fields: [
+        "id",
         "empresa",
         "contacto",
         "correoContacto",
@@ -42,11 +43,11 @@ export default {
     };
   },
   mounted: function() {
-    this.listarClientes();
+    this.listarClientes;
   },
   methods: {
     listarClientes: function() {
-      axios.get("http://127.0.0.1:8000/api/Cliente/").then(
+      axios.get("http://localhost:8000/api/Cliente/").then(
         (response) => {
           this.clientes = response.data;
           console.log("Clientes listados exitosamente.");

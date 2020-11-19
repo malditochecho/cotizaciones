@@ -7,7 +7,7 @@ class ClienteSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = models.Cliente
-        fields = ('url', 'empresa', 'contacto', 'telefonoContacto', 'correoContacto')
+        fields = ('url', 'id', 'empresa', 'contacto', 'telefonoContacto', 'correoContacto')
 
 
 # class ServicioSerializer(serializers.HyperlinkedModelSerializer):
