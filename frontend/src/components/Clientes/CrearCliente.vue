@@ -40,12 +40,19 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-button type="submit" variant="success">Guardar</b-button>
+      <b-button :disabled="clienteNuevo" type="submit" variant="success"
+        >Guardar</b-button
+      >
+      <b-button :disabled="!clienteNuevo" type="submit" variant="warning"
+        >Editar</b-button
+      >
     </b-form>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "CrearCliente",
   data() {
@@ -57,6 +64,9 @@ export default {
         correoContacto: "",
       },
     };
+  },
+  computed: {
+    ...mapState(["clienteNuevo"]),
   },
   // mounted: function() {
   //   this.limpiarFormulario();
