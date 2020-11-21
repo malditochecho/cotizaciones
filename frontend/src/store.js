@@ -28,7 +28,7 @@ export default new Vuex.Store({
     },
     DISABLE_BUTON(state) {
       state.clienteNuevo = true;
-    }
+    },
   },
   actions: {
     obtenerClientes({ commit }) {
@@ -41,9 +41,14 @@ export default new Vuex.Store({
         commit("GUARDAR_CLIENTE", cliente);
       });
     },
+    eliminarCliente({ commit }, cliente) {
+      return EventService.eliminarCliente(cliente).then(() => {
+        commit("ELIMINAR_CLIENTE", cliente);
+      });
+    },
     activarBotonClienteNuevo({ commit }) {
-      commit("DISABLE_BUTON")
-    }
+      commit("DISABLE_BUTON");
+    },
   },
   getters: {
     obtenerCliente: (state) => (id) => {

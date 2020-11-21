@@ -14,35 +14,50 @@ export default {
   obtenerClientes() {
     return apiClient.get("Cliente/");
   },
-  obtenerCliente() {
-    return apiClient.get("Cliente/:id/");
+  obtenerCliente(id) {
+    return apiClient.get(`Cliente/${id}/`);
   },
   crearCliente(cliente) {
     return apiClient.post("Cliente/", cliente);
   },
-  eliminarCliente() {
-    return apiClient.delete("Cliente/:id/");
+  eliminarCliente(id) {
+    return apiClient.delete(`Cliente/${id}/`);
+  },
+  actualizarCliente() {
+    //
   },
 
   // productos
   obtenerProductos() {
     return apiClient.get("Producto/");
   },
-  obtenerProducto() {
-    return apiClient.get("Producto/:id/");
+  obtenerProducto(id) {
+    return apiClient.get(`Producto/${id}/`);
   },
   crearProducto(producto) {
     return apiClient.post("Producto/", producto);
+  },
+  eliminarProducto(id) {
+    return apiClient.delete(`Producto/${id}/`);
+  },
+  actualizarProducto() {
+    //
   },
 
   // servicios
   obtenerServicios() {
     return apiClient.get("Servicio/");
   },
-  obtenerServicio() {
-    return apiClient.get("Servicio/:id/");
+  obtenerServicio(id) {
+    return apiClient.get(`Servicio/${id}/`);
   },
   crearServicio(servicio) {
     return apiClient.post("Servicio/", servicio);
+  },
+  eliminarServicio(id) {
+    return apiClient.delete(`Servicio/${id}/`);
+  },
+  actualizarServicio() {
+    //
   },
 };

@@ -41,10 +41,9 @@ export default {
     };
   },
   computed: {
-    ...mapState(["listaClientes"]),
-    ...mapState(["clienteNuevo"]),
+    ...mapState(["listaClientes", "clienteNuevo"]),
   },
-  mounted: function () {
+  mounted: function() {
     this.obtenerClientes();
   },
   methods: {
@@ -58,14 +57,23 @@ export default {
           console.log(err);
         });
     },
-    eliminarCliente() {},
+    eliminarCliente(cliente) {
+      this.$store
+        .dispatch("eliminarCliente", cliente.id)
+        .then(() => {})
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     editarCliente() {
-      this.$store.dispatch("activarBotonClienteNuevo").then(() => {
-        console.log(this.$store.state.clienteNuevo);
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      this.$store
+        .dispatch("activarBotonClienteNuevo")
+        .then(() => {
+          console.log(this.$store.state.clienteNuevo);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };
