@@ -1,8 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-// import Clientes from "../views/Clientes.vue";
-// import Cotizaciones from "../views/Cotizaciones.vue";
+import Home from "@/views/Home.vue";
+import Cotizaciones from "@/views/Cotizaciones.vue";
+import Clientes from "@/views/MantenedorClientes.vue";
+import Servicios from "@/views/MantenedorServicios.vue";
+import Productos from "@/views/MantenedorProductos.vue";
+import Prueba from "@/views/Prueba.vue";
 
 Vue.use(VueRouter);
 
@@ -13,24 +16,29 @@ const routes = [
     component: Home,
   },
   {
+    path: "/prueba",
+    name: "Prueba",
+    component: Prueba,
+  },
+  {
     path: "/cotizaciones",
     name: "Cotizaciones",
-    component: () => import("../views/Cotizaciones.vue"),
+    component: Cotizaciones,
   },
   {
     path: "/clientes",
-    name: "MantenedorClientes",
-    component: () => import("../views/MantenedorClientes.vue"),
+    name: "Clientes",
+    component: Clientes,
   },
   {
     path: "/productos",
-    name: "MantenedorProductos",
-    component: () => import("../views/MantenedorProductos.vue"),
+    name: "Productos",
+    component: Productos,
   },
   {
     path: "/servicios",
-    name: "MantenedorServicios",
-    component: () => import("../views/MantenedorServicios.vue"),
+    name: "Servicios",
+    component: Servicios,
   },
   {
     path: "/about",

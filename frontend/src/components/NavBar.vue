@@ -22,7 +22,7 @@
           <!-- Boton crear cotizacion -->
           <b-nav-item href="#">
             <b-button size="md" variant="success"
-              ><router-link to="/cotizaciones">Cotizaciones</router-link>
+              ><router-link to="Cotizaciones">Cotizaciones</router-link>
             </b-button>
           </b-nav-item>
 
@@ -34,13 +34,13 @@
               variant="warning"
             >
               <b-dropdown-item>
-                <router-link to="/clientes">Clientes</router-link>
+                <router-link to="Clientes">Clientes</router-link>
               </b-dropdown-item>
               <b-dropdown-item>
-                <router-link to="/productos">Productos</router-link>
+                <router-link to="Productos">Productos</router-link>
               </b-dropdown-item>
               <b-dropdown-item>
-                <router-link to="/servicios">Servicios</router-link>
+                <router-link to="Servicios">Servicios</router-link>
               </b-dropdown-item>
               <b-dropdown-divider></b-dropdown-divider>
               <b-dropdown-item href="#">Otros</b-dropdown-item>

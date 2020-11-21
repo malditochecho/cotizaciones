@@ -2,26 +2,14 @@
   <div id="app">
     <NavBar />
     <b-container fluid>
-      <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/clientes">Clientes</router-link> |
-      <router-link to="/cotizaciones">Cotizaciones</router-link> |
-      <router-link to="/mantenedores">Crear cliente</router-link>
-    </div> -->
       <router-view />
     </b-container>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import NavBar from "@/components/NavBar.vue";
-
 export default {
   name: "Home",
-  components: {
-    NavBar,
-  },
 };
 </script>
 
