@@ -26,6 +26,9 @@ export default new Vuex.Store({
       );
       state.listaClientes.splice(index, 1);
     },
+    DISABLE_BUTON(state) {
+      state.clienteNuevo = true;
+    }
   },
   actions: {
     obtenerClientes({ commit }) {
@@ -38,6 +41,9 @@ export default new Vuex.Store({
         commit("GUARDAR_CLIENTE", cliente);
       });
     },
+    activarBotonClienteNuevo({ commit }) {
+      commit("DISABLE_BUTON")
+    }
   },
   getters: {
     obtenerCliente: (state) => (id) => {

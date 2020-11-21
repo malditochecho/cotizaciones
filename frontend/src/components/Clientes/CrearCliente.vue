@@ -1,6 +1,6 @@
 <template>
   <div class="p-5">
-    <h1>Nuevo cliente</h1>
+    <h1> {{ clienteNuevo?"Editando Cliente": "Nuevo Cliente" }} </h1>
     <b-form @submit.prevent="guardarCliente">
       <!-- Nombre empresa -->
       <b-form-group id="input-group-1" label-for="input-1">
@@ -40,11 +40,22 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-button :disabled="clienteNuevo" type="submit" variant="success"
+      <b-button  v-if="!clienteNuevo" :disabled="clienteNuevo" type="submit" variant="success"
         >Guardar</b-button
       >
-      <b-button :disabled="!clienteNuevo" type="submit" variant="warning"
+      <b-button
+        v-if="clienteNuevo"
+        :disabled="!clienteNuevo"
+        type="submit"
+        variant="warning"
         >Editar</b-button
+      >
+      <b-button
+        v-if="clienteNuevo"
+        :disabled="!clienteNuevo"
+        type="submit"
+        variant="danger"
+        >Cancelar</b-button
       >
     </b-form>
   </div>

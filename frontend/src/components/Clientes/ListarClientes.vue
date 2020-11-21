@@ -42,8 +42,9 @@ export default {
   },
   computed: {
     ...mapState(["listaClientes"]),
+    ...mapState(["clienteNuevo"]),
   },
-  mounted: function() {
+  mounted: function () {
     this.obtenerClientes();
   },
   methods: {
@@ -58,6 +59,14 @@ export default {
         });
     },
     eliminarCliente() {},
+    editarCliente() {
+      this.$store.dispatch("activarBotonClienteNuevo").then(() => {
+        console.log(this.$store.state.clienteNuevo);
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
   },
 };
 </script>
