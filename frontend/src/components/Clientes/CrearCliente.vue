@@ -1,6 +1,6 @@
 <template>
   <div class="p-5">
-    <h1> {{ clienteNuevo?"Editando Cliente": "Nuevo Cliente" }} </h1>
+    <h1>{{ clienteNuevo ? "Editando Cliente" : "Nuevo Cliente" }}</h1>
     <b-form @submit.prevent="guardarCliente">
       <!-- Nombre empresa -->
       <b-form-group id="input-group-1" label-for="input-1">
@@ -10,6 +10,7 @@
           type="text"
           required
           placeholder="Ingresa nombre del cliente"
+          maxlength="100"
         ></b-form-input>
       </b-form-group>
 
@@ -19,6 +20,7 @@
           id="input-2"
           v-model="cliente.contacto"
           placeholder="Ingresa el contacto"
+          maxlength="100"
         ></b-form-input>
       </b-form-group>
 
@@ -28,6 +30,8 @@
           id="input-2"
           v-model="cliente.correoContacto"
           placeholder="Ingresa el email"
+          type="email"
+          maxlength="100"
         ></b-form-input>
       </b-form-group>
 
@@ -37,10 +41,17 @@
           id="input-2"
           v-model="cliente.telefonoContacto"
           placeholder="Ingresa el telefono"
+          type="number"
+          maxlength="11"
+          minlength="8"
         ></b-form-input>
       </b-form-group>
 
-      <b-button  v-if="!clienteNuevo" :disabled="clienteNuevo" type="submit" variant="success"
+      <b-button
+        v-if="!clienteNuevo"
+        :disabled="clienteNuevo"
+        type="submit"
+        variant="success"
         >Guardar</b-button
       >
       <b-button
@@ -92,10 +103,12 @@ export default {
         });
     },
     limpiarFormulario() {
-      this.empresa = "";
-      this.contacto = "";
-      this.telefonoContacto = "";
-      this.correoContacto = "";
+      this.cliente = {
+        empresa: "",
+        contacto: "",
+        telefonoContacto: "",
+        correoContacto: "",
+      };
     },
   },
 };

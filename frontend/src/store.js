@@ -37,8 +37,9 @@ export default new Vuex.Store({
       });
     },
     guardarCliente({ commit }, cliente) {
-      return EventService.crearCliente(cliente).then(() => {
-        commit("GUARDAR_CLIENTE", cliente);
+      return EventService.crearCliente(cliente).then((response) => {
+        commit("GUARDAR_CLIENTE", response.data);
+        console.log(response.data);
       });
     },
     eliminarCliente({ commit }, cliente) {
