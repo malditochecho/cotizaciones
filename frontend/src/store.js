@@ -11,7 +11,7 @@ export default new Vuex.Store({
     listaClientes: [],
     listaProductos: [],
     listaServicios: [],
-    cliente: {},
+    actualizaCliente: {},
     nombre: "Mati",
   },
   mutations: {
@@ -39,6 +39,12 @@ export default new Vuex.Store({
     ENABLE_BUTON(state) {
       state.clienteNuevo = false;
     },
+    ACTUALIZA_CLIENTE(state, cliente){
+      state.actualizaCliente = cliente;
+    },
+    LIMPIAR_FORMULARIO(state){
+      state.actualizaCliente = {}
+    }
   },
   actions: {
     // actions de cotizaciones
@@ -75,6 +81,12 @@ export default new Vuex.Store({
     },
     desactivarBotonClienteNuevo({ commit }) {
       commit("ENABLE_BUTON");
+    },
+    editarCliente( {commit}, cliente ) {
+      commit("ACTUALIZA_CLIENTE", cliente);
+    },
+    limpiarFormulario( {commit} ) {
+      commit("LIMPIAR_FORMULARIO");
     },
 
     // actions de servicios

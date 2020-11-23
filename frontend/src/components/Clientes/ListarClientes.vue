@@ -20,6 +20,7 @@
         <b-button @click="eliminarCliente(item)">Eliminar</b-button>
       </template>
     </b-table>
+    <p> {{actualizaCliente}} </p>
   </div>
 </template>
 
@@ -41,7 +42,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["listaClientes", "clienteNuevo"]),
+    ...mapState(["listaClientes", "clienteNuevo", "actualizaCliente"]),
   },
   mounted: function() {
     this.obtenerClientes();
@@ -63,9 +64,21 @@ export default {
           console.log(err);
         });
     },
-    editarCliente() {
+    editarCliente(item) {
+      console.log("Editando..." + item.empresa)
+
       this.$store
         .dispatch("activarBotonClienteNuevo")
+        .then(() => {
+          console.log(this.$store.state.clienteNuevo);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+
+        this.$store
+        .dispatch("editarCliente", item)
         .then(() => {
           console.log(this.$store.state.clienteNuevo);
         })
