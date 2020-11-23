@@ -7,6 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     clienteNuevo: false,
+    listaCotizaciones: [],
     listaClientes: [],
     listaProductos: [],
     listaServicios: [],
@@ -14,8 +15,14 @@ export default new Vuex.Store({
     nombre: "Mati",
   },
   mutations: {
-    OBTENER_CLIENTES(state, response) {
-      state.listaClientes = response;
+    // mutations de cotizaciones
+    OBTENER_COTIZACIONES(state, cotizaciones) {
+      state.listaCotizaciones = cotizaciones;
+    },
+
+    // mutations de clientes
+    OBTENER_CLIENTES(state, clientes) {
+      state.listaClientes = clientes;
     },
     GUARDAR_CLIENTE(state, cliente) {
       state.listaClientes.push(cliente);
@@ -31,6 +38,19 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    // actions de cotizaciones
+    // obtenerCotizaciones({ commit }) {
+    //   return EventService.obtenerCotizaciones().then((response) => {
+    //     commit("OBTENER_COTIZACIONES", response.data);
+    //   });
+    // },
+    obtenerCotizaciones({ commit }) {
+      return EventService.obtenerCotizaciones().then((response) => {
+        commit("OBTENER_COTIZACIONES", response.data);
+      });
+    },
+
+    // actions de clientes
     obtenerClientes({ commit }) {
       return EventService.obtenerClientes().then((response) => {
         commit("OBTENER_CLIENTES", response.data);
@@ -50,6 +70,9 @@ export default new Vuex.Store({
     activarBotonClienteNuevo({ commit }) {
       commit("DISABLE_BUTON");
     },
+
+    // actions de servicios
+    // actions de productos
   },
   getters: {
     obtenerCliente: (state) => (id) => {

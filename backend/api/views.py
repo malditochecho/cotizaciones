@@ -23,9 +23,15 @@ class ProductoViewSet(viewsets.ModelViewSet):
     # permission_classes = [IsAuthenticated]
 
 
-class CotizacionViewSet(viewsets.ModelViewSet):
+class CotizacionViewSetGet(viewsets.ModelViewSet):
     queryset = models.Cotizacion.objects.all()
-    serializer_class = serializers.CotizacionSerializer
+    serializer_class = serializers.CotizacionSerializerGet
+    # permission_classes = [IsAuthenticated]
+
+
+class CotizacionViewSetPost(viewsets.ModelViewSet):
+    queryset = models.Cotizacion.objects.all()
+    serializer_class = serializers.CotizacionSerializerPost
     # permission_classes = [IsAuthenticated]
 
 

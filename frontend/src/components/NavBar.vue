@@ -2,11 +2,13 @@
   <div>
     <b-navbar toggleable="lg" type="light" variant="dark">
       <!-- Logo -->
-      <b-navbar-brand mx-auto href="http://127.0.0.1:8080/">
-        <img
-          src="https://orregohnos.cl/wp-content/uploads/2020/09/new-logo-bigger-01.png"
-          width="110"
-        />
+      <b-navbar-brand mx-auto>
+        <router-link to="/">
+          <img
+            src="https://orregohnos.cl/wp-content/uploads/2020/09/new-logo-bigger-01.png"
+            width="110"
+          />
+        </router-link>
       </b-navbar-brand>
 
       <!-- Burger button -->

@@ -11,7 +11,8 @@ router = routers.DefaultRouter()
 router.register(r'Cliente', views.ClienteViewSet, basename='cliente')
 router.register(r'Servicio', views.ServicioViewSet, basename='servicio')
 router.register(r'Producto', views.ProductoViewSet, basename='producto')
-router.register(r'Cotizacion', views.CotizacionViewSet, basename='cotizacion')
+router.register(r'CotizacionGET', views.CotizacionViewSetGet, basename='cotizacionget')
+router.register(r'CotizacionPOST', views.CotizacionViewSetPost, basename='cotizacionpost')
 
 urlpatterns = [
     url(r'^', include(router.urls)),

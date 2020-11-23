@@ -90,9 +90,6 @@ export default {
   computed: {
     ...mapState(["clienteNuevo"]),
   },
-  // mounted: function() {
-  //   this.limpiarFormulario();
-  // },
   methods: {
     guardarCliente() {
       this.$store

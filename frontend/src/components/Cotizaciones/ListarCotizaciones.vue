@@ -2,25 +2,27 @@
   <div class="p-5">
     <h1>Cotizaciones</h1>
     <b-table
-      :id="cotizaciones.id"
+      :id="listaCotizaciones.id"
       bordered
       small
       head-variant="dark"
       hover
-      :items="cotizaciones"
+      :items="listaCotizaciones"
       :fields="fields"
     >
       <template v-slot:cell(editar)="{ item }">
-        <!-- nick es a la columna a la cual se va a aplicar, y item es un nombre q se va a usar para llamarlo en la sgte linea -->
-        <b-button @click="editarCotizacion(item)">Ver detalle</b-button>
-        <!-- item es equivalente a un elemento de items -->
+        <b-button @click="editarCotizacion(item)">Editar</b-button>
+      </template>
+
+      <template v-slot:cell(eliminar)="{ item }">
+        <b-button @click="eliminarCotizacion(item)">Eliminar</b-button>
       </template>
     </b-table>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import { mapState } from "vuex";
 
 export default {
   name: "ListarCotizaciones",
@@ -35,35 +37,23 @@ export default {
         "producto.producto",
         "cantidadProducto",
         { key: "editar", label: "" },
+        { key: "eliminar", label: "" },
       ],
     };
   },
-  mounted: function() {
-    this.listarCotizaciones();
+  computed: {
+    ...mapState(["listaCotizaciones"]),
   },
+  mounted: function() {},
   methods: {
-    listarCotizaciones: function() {
-      axios.get("http://localhost:8000/api/Cotizacion/").then(
-        (response) => {
-          this.cotizaciones = response.data;
-          console.log("Cotizaciones listados exitosamente.");
-        },
-        (error) => {
-          console.log("API con error: ".concat(error));
-        }
-      );
+    eliminarCotizacion(cotizacion) {
+      this.$store
+        .dispatch("eliminarCotizacion", cotizacion.id)
+        .then(() => {})
+        .catch((err) => {
+          console.log(err);
+        });
     },
-    eliminarCotizacion: function(item) {
-      console.log("eliminando cotizacion " + item.empresa);
-      axios
-        .delete(item.url)
-        .then((response) => console.log("Status: " + response.status))
-        .catch((error) => console.log(error));
-    },
-    // editarCotizacion: function(item) {
-    //   console.log("editando cotizacion " + item.empresa);
-    //   this.;
-    // },
   },
 };
 </script>

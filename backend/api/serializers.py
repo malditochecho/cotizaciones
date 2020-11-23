@@ -32,13 +32,25 @@ class ProductoSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url', 'id', 'producto', 'marca', 'fabricante', 'valorUnidad',)
 
 
-class CotizacionSerializer(serializers.ModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name='api:cotizacion-detail')
+# class CotizacionSerializer(serializers.ModelSerializer):
+#     url = serializers.HyperlinkedIdentityField(view_name='api:cotizacion-detail')
 
+#     class Meta:
+#         model = models.Cotizacion
+#         fields = ('url', 'id', 'empresa', 'servicio', 'metrosCuadrados', 'producto', 'cantidadProducto',)
+#         depth = 1
+
+class CotizacionSerializerGet(serializers.ModelSerializer):
     class Meta:
         model = models.Cotizacion
-        fields = ('url', 'id', 'empresa', 'servicio', 'metrosCuadrados', 'producto', 'cantidadProducto',)
-        depth = 0
+        fields = ('id', 'empresa', 'servicio', 'metrosCuadrados', 'producto', 'cantidadProducto',)
+        depth = 1
+
+
+class CotizacionSerializerPost(serializers.ModelSerializer):
+    class Meta:
+        model = models.Cotizacion
+        fields = ('id', 'empresa', 'servicio', 'metrosCuadrados', 'producto', 'cantidadProducto',)
 
 
 """

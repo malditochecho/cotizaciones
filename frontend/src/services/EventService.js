@@ -10,6 +10,23 @@ const apiClient = axios.create({
 });
 
 export default {
+  // cotizaciones
+  obtenerCotizaciones() {
+    return apiClient.get("CotizacionGET/");
+  },
+  obtenerCotizacion(id) {
+    return apiClient.get(`Cotizacion/${id}/`);
+  },
+  crearCotizacion(Cotizacion) {
+    return apiClient.post("CotizacionPOST/", Cotizacion);
+  },
+  eliminarCotizacion(id) {
+    return apiClient.delete(`Cotizacion/${id}/`);
+  },
+  actualizarCotizacion() {
+    //
+  },
+
   // clientes
   obtenerClientes() {
     return apiClient.get("Cliente/");

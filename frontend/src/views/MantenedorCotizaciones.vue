@@ -44,6 +44,19 @@ export default {
     CrearCotizacion,
     ListarCotizaciones,
   },
+  mounted: function() {
+    this.obtenerCotizaciones();
+  },
+  methods: {
+    obtenerCotizaciones() {
+      this.$store
+        .dispatch("obtenerCotizaciones")
+        .then(() => {})
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
 

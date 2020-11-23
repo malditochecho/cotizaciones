@@ -50,9 +50,7 @@ export default {
     obtenerClientes() {
       this.$store
         .dispatch("obtenerClientes")
-        .then(() => {
-          console.log(this.$store.state.listaClientes);
-        })
+        .then(() => {})
         .catch((err) => {
           console.log(err);
         });
