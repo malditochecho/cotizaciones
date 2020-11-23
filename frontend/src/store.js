@@ -36,6 +36,9 @@ export default new Vuex.Store({
     DISABLE_BUTON(state) {
       state.clienteNuevo = true;
     },
+    ENABLE_BUTON(state) {
+      state.clienteNuevo = false;
+    },
   },
   actions: {
     // actions de cotizaciones
@@ -69,6 +72,9 @@ export default new Vuex.Store({
     },
     activarBotonClienteNuevo({ commit }) {
       commit("DISABLE_BUTON");
+    },
+    desactivarBotonClienteNuevo({ commit }) {
+      commit("ENABLE_BUTON");
     },
 
     // actions de servicios

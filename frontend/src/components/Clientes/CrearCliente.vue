@@ -66,6 +66,7 @@
         :disabled="!clienteNuevo"
         type="submit"
         variant="danger"
+        @click="cancelarEdicion()"
         >Cancelar</b-button
       >
     </b-form>
@@ -107,6 +108,13 @@ export default {
         correoContacto: "",
       };
     },
+    cancelarEdicion(){
+      this.$store
+      .dispatch("desactivarBotonClienteNuevo")
+      .then(() => {
+        console.log(this.$store.state.clienteNuevo)
+      });
+    }
   },
 };
 </script>
