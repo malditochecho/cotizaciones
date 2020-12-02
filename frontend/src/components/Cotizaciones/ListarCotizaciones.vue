@@ -42,7 +42,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["listaCotizaciones"]),
+    ...mapState(["listaCotizaciones", "listaClientes"]),
   },
   mounted: function() {},
   methods: {

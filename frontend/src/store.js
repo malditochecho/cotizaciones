@@ -6,95 +6,36 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    clienteNuevo: false,
+    clienteNuevo: {},
     listaCotizaciones: [],
     listaClientes: [],
     listaProductos: [],
     listaServicios: [],
-    actualizaCliente: {},
-    nombre: "Mati",
+    listaNombresClientes: [],
+    objetoEnEdicionEnFormulario: {},
+    modoEditando: {},
   },
   mutations: {
-    // mutations de cotizaciones
-    OBTENER_COTIZACIONES(state, cotizaciones) {
-      state.listaCotizaciones = cotizaciones;
-    },
-
     // mutations de clientes
-    OBTENER_CLIENTES(state, clientes) {
-      state.listaClientes = clientes;
+    OBTENER_TODOS_LOS_CLIENTES(state, clientes) {
+      state.listaClientes = clientes.data;
     },
-    GUARDAR_CLIENTE(state, cliente) {
+    GUARDAR_CLIENTE_NUEVO(state, cliente) {
       state.listaClientes.push(cliente);
     },
-    ELIMINAR_CLIENTE(state, id) {
-      const index = state.listaClientes.findIndex(
-        (cliente) => cliente.id == id
-      );
-      state.listaClientes.splice(index, 1);
-    },
-    DISABLE_BUTON(state) {
-      state.clienteNuevo = true;
-    },
-    ENABLE_BUTON(state) {
-      state.clienteNuevo = false;
-    },
-    ACTUALIZA_CLIENTE(state, cliente){
-      state.actualizaCliente = cliente;
-    },
-    LIMPIAR_FORMULARIO(state){
-      state.actualizaCliente = {}
-    }
   },
   actions: {
-    // actions de cotizaciones
-    // obtenerCotizaciones({ commit }) {
-    //   return EventService.obtenerCotizaciones().then((response) => {
-    //     commit("OBTENER_COTIZACIONES", response.data);
-    //   });
-    // },
-    obtenerCotizaciones({ commit }) {
-      return EventService.obtenerCotizaciones().then((response) => {
-        commit("OBTENER_COTIZACIONES", response.data);
-      });
-    },
-
     // actions de clientes
-    obtenerClientes({ commit }) {
-      return EventService.obtenerClientes().then((response) => {
-        commit("OBTENER_CLIENTES", response.data);
+    obtenerTodosLosClientes({ commit }) {
+      return EventService.obtenerTodosLosClientes().then((response) => {
+        commit("OBTENER_TODOS_LOS_CLIENTES", response);
       });
     },
-    guardarCliente({ commit }, cliente) {
-      return EventService.crearCliente(cliente).then((response) => {
-        commit("GUARDAR_CLIENTE", response.data);
-        console.log(response.data);
+    guardarClienteNuevo({ commit }, cliente) {
+      return EventService.guardarClienteNuevo(cliente).then((response) => {
+        commit("GUARDAR_CLIENTE_NUEVO", response);
       });
-    },
-    eliminarCliente({ commit }, cliente) {
-      return EventService.eliminarCliente(cliente).then(() => {
-        commit("ELIMINAR_CLIENTE", cliente);
-      });
-    },
-    activarBotonClienteNuevo({ commit }) {
-      commit("DISABLE_BUTON");
-    },
-    desactivarBotonClienteNuevo({ commit }) {
-      commit("ENABLE_BUTON");
-    },
-    editarCliente( {commit}, cliente ) {
-      commit("ACTUALIZA_CLIENTE", cliente);
-    },
-    limpiarFormulario( {commit} ) {
-      commit("LIMPIAR_FORMULARIO");
-    },
-
-    // actions de servicios
-    // actions de productos
-  },
-  getters: {
-    obtenerCliente: (state) => (id) => {
-      return state.listaClientes.find((cliente) => cliente.id === id);
     },
   },
+  getters: {},
 });

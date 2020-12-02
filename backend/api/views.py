@@ -6,7 +6,7 @@ from api import serializers
 
 
 class ClienteViewSet(viewsets.ModelViewSet):
-    queryset = models.Cliente.objects.all()
+    queryset = models.Cliente.objects.all().order_by('-id')
     serializer_class = serializers.ClienteSerializer
     # permission_classes = [IsAuthenticated]
 

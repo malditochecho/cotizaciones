@@ -1,6 +1,6 @@
 <template>
   <div class="p-5">
-    <h1>Clientes</h1>
+    <h1>Clientes <CrearClienteModal /></h1>
     <b-table
       :id="listaClientes.id"
       bordered
@@ -10,24 +10,27 @@
       :items="listaClientes"
       :fields="fields"
     >
-      <template v-slot:cell(editar)="{ item }">
-        <!-- nick es a la columna a la cual se va a aplicar, y item es un nombre q se va a usar para llamarlo en la sgte linea -->
-        <b-button @click="editarCliente(item)">Editar</b-button>
-        <!-- item es equivalente a un elemento de items -->
+      <template #cell(editar)="item">
+        <EditarClienteModal item="item"></EditarClienteModal>
       </template>
 
-      <template v-slot:cell(eliminar)="{ item }">
-        <b-button @click="eliminarCliente(item)">Eliminar</b-button>
+      <template v-slot:cell(eliminar)="{}">
+        <b-button>Eliminar</b-button>
       </template>
     </b-table>
-    <p> {{actualizaCliente}} </p>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import CrearClienteModal from "@/components/Clientes/CrearClienteModal.vue";
+import EditarClienteModal from "@/components/Clientes/EditarClienteModal.vue";
 
 export default {
+  components: {
+    CrearClienteModal,
+    EditarClienteModal,
+  },
   data() {
     return {
       fields: [
@@ -42,46 +45,16 @@ export default {
     };
   },
   computed: {
-    ...mapState(["listaClientes", "clienteNuevo", "actualizaCliente"]),
+    ...mapState(["listaClientes", "modoEditando"]),
   },
   mounted: function() {
-    this.obtenerClientes();
+    this.obtenerTodosLosClientes();
   },
   methods: {
-    obtenerClientes() {
+    obtenerTodosLosClientes() {
       this.$store
-        .dispatch("obtenerClientes")
+        .dispatch("obtenerTodosLosClientes")
         .then(() => {})
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    eliminarCliente(cliente) {
-      this.$store
-        .dispatch("eliminarCliente", cliente.id)
-        .then(() => {})
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    editarCliente(item) {
-      console.log("Editando..." + item.empresa)
-
-      this.$store
-        .dispatch("activarBotonClienteNuevo")
-        .then(() => {
-          console.log(this.$store.state.clienteNuevo);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-
-
-        this.$store
-        .dispatch("editarCliente", item)
-        .then(() => {
-          console.log(this.$store.state.clienteNuevo);
-        })
         .catch((err) => {
           console.log(err);
         });

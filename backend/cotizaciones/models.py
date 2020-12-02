@@ -31,10 +31,10 @@ class Producto(models.Model):
 
 
 class Cotizacion(models.Model):
-    # folio = models.AutoField(primary_key=True, verbose_name='Numero de folio')
+    servicios = models.ManyToManyField(Servicio, blank=True)
     empresa = models.ForeignKey(Cliente, on_delete=models.CASCADE, verbose_name='Cliente')
 
-    servicio = models.ForeignKey(Servicio, on_delete=models.CASCADE, null=True)
+    # servicio = models.ForeignKey(Servicio, on_delete=models.CASCADE, null=True)
     metrosCuadrados = models.SmallIntegerField(verbose_name='Metros cuadrados', null=True, blank=True)
 
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, null=True)

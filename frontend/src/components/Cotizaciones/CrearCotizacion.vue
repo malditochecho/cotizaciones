@@ -1,7 +1,7 @@
 <template>
   <div class="p-5">
     <h1>Nueva cotizacion</h1>
-    <b-form @submit="onSubmit">
+    <b-form @submit="guardarCotizacion">
       <!-- Nombre empresa -->
       <b-form-group
         id="input-group-1"
@@ -10,8 +10,8 @@
         description=""
       >
         <b-form-select
-          v-model="clienteSeleccionado"
-          :options="listaClientes"
+          v-model="idClienteSeleccionado"
+          :options="listaNombreClientes"
         ></b-form-select>
       </b-form-group>
 
@@ -23,8 +23,8 @@
         description=""
       >
         <b-form-select
-          v-model="servicioSeleccionado"
-          :options="servicios"
+          v-model="idServicioSeleccionado"
+          :options="listaNombreServicios"
         ></b-form-select>
       </b-form-group>
 
@@ -46,8 +46,8 @@
         description=""
       >
         <b-form-select
-          v-model="productoSeleccionado"
-          :options="productos"
+          v-model="idProductoSeleccionado"
+          :options="listaNombreProductos"
         ></b-form-select>
       </b-form-group>
 
@@ -58,7 +58,7 @@
         label="Cantidad de producto"
         description=""
       >
-        <b-form-input v-model="metrosCuadrados"></b-form-input>
+        <b-form-input v-model="cantidadProducto"></b-form-input>
       </b-form-group>
 
       <b-button type="submit" variant="success">Guardar</b-button>
@@ -67,9 +67,18 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 
 export default {
+  data: function() {
+    return {
+      metrosCuadrados: "",
+      cantidadProducto: "",
+      idClienteSeleccionado: "",
+      idServicioSeleccionado: "",
+      idProductoSeleccionado: "",
+    };
+  },
   computed: {
     ...mapState([
       "listaCotizaciones",
@@ -77,6 +86,26 @@ export default {
       "listaProductos",
       "listaServicios",
     ]),
+    ...mapGetters([
+      "listaNombreClientes",
+      "listaNombreProductos",
+      "listaNombreServicios",
+    ]),
+  },
+  methods: {
+    guardarCotizacion() {
+      this.$store
+        .dispatch("guardarCotizacion", {
+          empresa: this.actualizaCliente.empresa,
+          contacto: this.actualizaCliente.contacto,
+          telefonoContacto: this.actualizaCliente.telefonoContacto,
+          correoContacto: this.actualizaCliente.correoContacto,
+        })
+        .then(this.limpiarFormulario())
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 };
 </script>

@@ -46,11 +46,38 @@ export default {
   },
   mounted: function() {
     this.obtenerCotizaciones();
+    this.obtenerClientes();
+    this.obtenerProductos();
+    this.obtenerServicios();
   },
   methods: {
     obtenerCotizaciones() {
       this.$store
         .dispatch("obtenerCotizaciones")
+        .then(() => {})
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    obtenerClientes() {
+      this.$store
+        .dispatch("obtenerClientes")
+        .then(() => {})
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    obtenerProductos() {
+      this.$store
+        .dispatch("obtenerProductos")
+        .then(() => {})
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    obtenerServicios() {
+      this.$store
+        .dispatch("obtenerServicios")
         .then(() => {})
         .catch((err) => {
           console.log(err);

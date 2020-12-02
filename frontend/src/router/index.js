@@ -5,7 +5,6 @@ import Cotizaciones from "@/views/MantenedorCotizaciones.vue";
 import Clientes from "@/views/MantenedorClientes.vue";
 import Servicios from "@/views/MantenedorServicios.vue";
 import Productos from "@/views/MantenedorProductos.vue";
-import Prueba from "@/views/Prueba.vue";
 
 Vue.use(VueRouter);
 
@@ -14,11 +13,6 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
-  },
-  {
-    path: "/prueba",
-    name: "Prueba",
-    component: Prueba,
   },
   {
     path: "/cotizaciones",
