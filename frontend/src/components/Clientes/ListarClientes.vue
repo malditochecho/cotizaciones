@@ -10,13 +10,22 @@
       :items="listaClientes"
       :fields="fields"
     >
-      <template #cell(editar)="item">
-        <EditarClienteModal item="item"></EditarClienteModal>
+      <template v-slot:cell(Acciones)="{ item }">
+        <b-row>
+          <b-col><EditarClienteModal :item="item"/></b-col>
+          <b-col>
+            <b-button @click="eliminarCliente(item)" variant="danger" block>
+              Eliminar
+            </b-button>
+          </b-col>
+        </b-row>
       </template>
 
-      <template v-slot:cell(eliminar)="{}">
-        <b-button>Eliminar</b-button>
-      </template>
+      <!-- <template v-slot:cell(eliminar)="{ item }">
+        <b-button @click="eliminarCliente(item)" variant="danger"
+          >Eliminar</b-button
+        >
+      </template> -->
     </b-table>
   </div>
 </template>
@@ -39,8 +48,8 @@ export default {
         "contacto",
         "telefonoContacto",
         "correoContacto",
-        "editar",
-        "eliminar",
+        "Acciones",
+        // "eliminar",
       ],
     };
   },
@@ -54,6 +63,14 @@ export default {
     obtenerTodosLosClientes() {
       this.$store
         .dispatch("obtenerTodosLosClientes")
+        .then(() => {})
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    eliminarCliente(cliente) {
+      this.$store
+        .dispatch("eliminarCliente", cliente.id)
         .then(() => {})
         .catch((err) => {
           console.log(err);

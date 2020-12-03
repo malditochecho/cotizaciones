@@ -17,16 +17,16 @@ export default {
   guardarClienteNuevo(cliente) {
     return apiClient.post("Cliente/", cliente);
   },
+  eliminarCliente(id) {
+    return apiClient.delete(`Cliente/${id}/`);
+  },
+  actualizarCliente(cliente) {
+    return apiClient.patch(`Cliente/${cliente.id}/`, cliente);
+  },
   // obtenerCliente(id) {
   //   return apiClient.get(`Cliente/${id}/`);
   // },
   // crearCliente(cliente) {
   //   return apiClient.post("Cliente/", cliente);
-  // },
-  // eliminarCliente(id) {
-  //   return apiClient.delete(`Cliente/${id}/`);
-  // },
-  // actualizarCliente(id, cliente) {
-  //   return apiClient.patch(`Cliente/${id}/`, cliente);
   // },
 };
