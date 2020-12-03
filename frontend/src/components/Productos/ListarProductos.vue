@@ -1,77 +1,81 @@
 <template>
   <div class="p-5">
-    <h1>Productos</h1>
+    <h1>Productos <CrearProductoModal /></h1>
     <b-table
-      :id="productos.id"
+      :id="listaProductos.id"
       bordered
       small
       head-variant="dark"
       hover
-      :items="productos"
+      :items="listaProductos"
       :fields="fields"
     >
-      <template v-slot:cell(editar)="{ item }">
-        <!-- nick es a la columna a la cual se va a aplicar, y item es un nombre q se va a usar para llamarlo en la sgte linea -->
-        <b-button @click="editarProductos(item)">Editar</b-button>
-        <!-- item es equivalente a un elemento de items -->
+      <template v-slot:cell(Acciones)="{ item }">
+        <b-row>
+          <b-col><EditarProductoModal :item="item"/></b-col>
+          <b-col>
+            <b-button @click="eliminarCliente(item)" variant="danger" block>
+              Eliminar
+            </b-button>
+          </b-col>
+        </b-row>
       </template>
 
-      <!-- A virtual composite column -->
-      <template v-slot:cell(eliminar)="{ item }">
-        <b-button @click="eliminarProducto(item)">Eliminar</b-button>
-      </template>
+      <!-- <template v-slot:cell(eliminar)="{ item }">
+        <b-button @click="eliminarCliente(item)" variant="danger"
+          >Eliminar</b-button
+        >
+      </template> -->
     </b-table>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import { mapState } from "vuex";
+import CrearProductoModal from "@/components/Productos/CrearProductoModal.vue";
+import EditarProductoModal from "@/components/Productos/EditarProductoModal.vue";
 
 export default {
-  name: "ListarProductos",
+  components: {
+    CrearProductoModal,
+    EditarProductoModal,
+  },
   data() {
     return {
-      productos: [],
       fields: [
         "id",
         "producto",
         "marca",
         "fabricante",
         "valorUnidad",
-        { key: "editar", label: "" },
-        { key: "eliminar", label: "" },
+        "Acciones",
+        // "eliminar",
       ],
     };
   },
+  computed: {
+    ...mapState(["listaProductos", "modoEditando"]),
+  },
   mounted: function() {
-    this.listarProductos();
+    this.obtenerTodosLosProductos();
   },
   methods: {
-    listarProductos: function() {
-      axios.get("http://localhost:8000/api/Producto/").then(
-        (response) => {
-          this.productos = response.data;
-          console.log("API ok!");
-          console.log("Productos listados exitosamente.");
-        },
-        (error) => {
-          console.log("API con error: ".concat(error));
-        }
-      );
+    obtenerTodosLosProductos() {
+      this.$store
+        .dispatch("obtenerTodosLosProductos")
+        .then(() => {})
+        .catch((err) => {
+          console.log(err);
+        });
     },
-    eliminarProductos: function(item) {
-      console.log("eliminando producto " + item.nombre);
-      axios
-        .delete(item.url)
-        .then((response) => console.log("Status: " + response.status))
-        .catch((error) => console.log(error));
+    eliminarCliente(cliente) {
+      this.$store
+        .dispatch("eliminarCliente", cliente.id)
+        .then(() => {})
+        .catch((err) => {
+          console.log(err);
+        });
     },
-    // editarProductos: function(item) {
-    //   console.log("editando producto " + item.empresa);
-    //   this.;
-    // },
   },
 };
 </script>
-
-<style></style>

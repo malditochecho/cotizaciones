@@ -11,7 +11,6 @@
         xl="4"
         offset-xl="4"
       >
-        <CrearProducto />
       </b-col>
     </b-row>
 
@@ -35,13 +34,11 @@
 </template>
 
 <script>
-import CrearProducto from "@/components/Productos/CrearProducto.vue";
 import ListarProductos from "@/components/Productos/ListarProductos.vue";
 
 export default {
   name: "MantenedorProductos",
   components: {
-    CrearProducto,
     ListarProductos,
   },
 };
