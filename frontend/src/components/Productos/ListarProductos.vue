@@ -14,18 +14,12 @@
         <b-row>
           <b-col><EditarProductoModal :item="item"/></b-col>
           <b-col>
-            <b-button @click="eliminarCliente(item)" variant="danger" block>
+            <b-button @click="eliminarProducto(item)" variant="danger" block>
               Eliminar
             </b-button>
           </b-col>
         </b-row>
       </template>
-
-      <!-- <template v-slot:cell(eliminar)="{ item }">
-        <b-button @click="eliminarCliente(item)" variant="danger"
-          >Eliminar</b-button
-        >
-      </template> -->
     </b-table>
   </div>
 </template>
@@ -68,9 +62,9 @@ export default {
           console.log(err);
         });
     },
-    eliminarCliente(cliente) {
+    eliminarProducto(producto) {
       this.$store
-        .dispatch("eliminarCliente", cliente.id)
+        .dispatch("eliminarProducto", producto.id)
         .then(() => {})
         .catch((err) => {
           console.log(err);

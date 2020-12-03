@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <b-button :v-b-modal="item.index" variant="danger">Editar</b-button> -->
     <b-button @click="mostrarModal = true" variant="info" block
       >Editar</b-button
     >
@@ -20,7 +19,7 @@
         <b-form-group
           id="input-group-1"
           label="Nombre Producto"
-          label-for="input-cliente"
+          label-for="input-producto"
         >
           <b-form-input
             id="input-producto"
@@ -31,11 +30,7 @@
           ></b-form-input>
         </b-form-group>
 
-        <b-form-group
-          id="input-group-1"
-          label="Marca"
-          label-for="input-marca"
-        >
+        <b-form-group id="input-group-1" label="Marca" label-for="input-marca">
           <b-form-input
             id="input-marca"
             v-model="productoEnEdicion.marca"
@@ -99,19 +94,16 @@ export default {
     };
   },
   props: ["item"],
-  computed: {
-    // ...mapState(["clienteEnEdicion"]),
-  },
   mounted: function() {
-    this.copiarClienteEdicion(this.item);
+    this.copiarProductoEdicion(this.item);
   },
   methods: {
-    copiarClienteEdicion(item) {
+    copiarProductoEdicion(item) {
       this.productoEnEdicion = item;
     },
     submitFormulario(productoEnEdicion) {
       this.$store
-        .dispatch("actualizarCliente", productoEnEdicion)
+        .dispatch("actualizarProducto", productoEnEdicion)
         .then(() => {})
         .catch((err) => {
           console.log(err);

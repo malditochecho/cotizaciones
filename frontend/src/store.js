@@ -96,22 +96,22 @@ export default new Vuex.Store({
     // actions de clientes
     obtenerTodosLosClientes({ commit }) {
       return EventService.obtenerTodosLosClientes().then((response) => {
-        commit("OBTENER_TODOS_LOS_SERVICIOS", response);
+        commit("OBTENER_TODOS_LOS_CLIENTES", response);
       });
     },
     guardarClienteNuevo({ commit }, cliente) {
       return EventService.guardarClienteNuevo(cliente).then((response) => {
-        commit("GUARDAR_SERVICIO_NUEVO", response);
+        commit("GUARDAR_CLIENTE_NUEVO", response);
       });
     },
     eliminarCliente({ commit }, cliente) {
       return EventService.eliminarCliente(cliente).then(() => {
-        commit("ELIMINAR_SERVICIO", cliente);
+        commit("ELIMINAR_CLIENTE", cliente);
       });
     },
     actualizarCliente({ commit }, cliente) {
       return EventService.actualizarCliente(cliente).then(() => {
-        commit("ACTUALIZAR_SERVICIO", cliente);
+        commit("ACTUALIZAR_CLIENTE", cliente);
       });
     },
     // actions de servicios
