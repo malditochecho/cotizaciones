@@ -10,7 +10,7 @@
       header-text-variant="light"
       centered
     >
-      <b-form @submit.prevent="submitFormulario(clienteNuevo)">
+      <b-form @submit="submitFormulario(clienteNuevo)">
         <!-- Nombre empresa -->
         <b-form-group
           id="input-group-1"

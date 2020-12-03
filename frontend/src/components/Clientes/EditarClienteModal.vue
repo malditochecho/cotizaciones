@@ -15,7 +15,7 @@
       centered
       size="md"
     >
-      <b-form @submit.prevent="submitFormulario(clienteEnEdicion)">
+      <b-form @submit="submitFormulario(clienteEnEdicion)">
         <!-- Nombre empresa -->
         <b-form-group
           id="input-group-1"
@@ -75,7 +75,12 @@
 
         <!-- BOTONES -->
         <div class="d-flex justify-content-between">
-          <b-button variant="info" type="submit">Actualizar</b-button>
+          <b-button
+            variant="info"
+            type="submit"
+            @click="mostrarModal = !mostrarModal"
+            >Actualizar</b-button
+          >
           <b-button type="submit">Cancelar</b-button>
         </div>
       </b-form>

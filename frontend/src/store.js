@@ -28,23 +28,14 @@ export default new Vuex.Store({
       );
       state.listaClientes.splice(index, 1);
     },
-    // ACTUALIZAR_CLIENTE(state, cliente) {
-    //   const index = state.listaClientes.findIndex((element) => {
-    //     element.id == cliente.id;
-    //   });
-    //   state.listaClientes.forEach((element) => {
-    //     if (element.id == cliente.id) {
-    //       state.listaClientes.splice(index, 1, cliente);
-    //     }
-    //   });
-    // },
     ACTUALIZAR_CLIENTE(state, cliente) {
       const index = state.listaClientes.findIndex((element) => {
         element.id == cliente.id;
       });
       state.listaClientes.forEach((element) => {
         if (element.id == cliente.id) {
-          this.$set(state.listaClientes, index, cliente);
+          state.listaClientes.splice(index, 1);
+          state.listaClientes.push(cliente);
         }
       });
     },
