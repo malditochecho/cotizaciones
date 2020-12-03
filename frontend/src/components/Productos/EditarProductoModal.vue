@@ -7,7 +7,7 @@
 
     <b-modal
       :id="item.index"
-      title="Editar cliente"
+      title="Editar Producto"
       v-model="mostrarModal"
       hide-footer
       header-bg-variant="info"
@@ -15,16 +15,16 @@
       centered
       size="md"
     >
-      <b-form @submit="submitFormulario(clienteEnEdicion)">
+      <b-form @submit="submitFormulario(productoEnEdicion)">
         <!-- Nombre empresa -->
         <b-form-group
           id="input-group-1"
-          label="Nombre empresa"
+          label="Nombre Producto"
           label-for="input-cliente"
         >
           <b-form-input
-            id="input-cliente"
-            v-model="clienteEnEdicion.empresa"
+            id="input-producto"
+            v-model="productoEnEdicion.producto"
             type="text"
             required
             maxlength="100"
@@ -33,12 +33,12 @@
 
         <b-form-group
           id="input-group-1"
-          label="Contacto"
-          label-for="input-contacto"
+          label="Marca"
+          label-for="input-marca"
         >
           <b-form-input
-            id="input-contacto"
-            v-model="clienteEnEdicion.contacto"
+            id="input-marca"
+            v-model="productoEnEdicion.marca"
             type="text"
             required
             maxlength="100"
@@ -47,12 +47,12 @@
 
         <b-form-group
           id="input-group-1"
-          label="Telefono"
-          label-for="input-telefono"
+          label="Fabricante"
+          label-for="input-fabricante"
         >
           <b-form-input
             id="input-telefono"
-            v-model="clienteEnEdicion.telefonoContacto"
+            v-model="productoEnEdicion.fabricante"
             type="text"
             required
             maxlength="100"
@@ -61,13 +61,13 @@
 
         <b-form-group
           id="input-group-1"
-          label="Correo"
-          label-for="input-correo"
+          label="Valor Unidad"
+          label-for="input-valor"
         >
           <b-form-input
             id="input-correo"
-            v-model="clienteEnEdicion.correoContacto"
-            type="text"
+            v-model="productoEnEdicion.valorUnidad"
+            type="number"
             required
             maxlength="100"
           ></b-form-input>
@@ -95,7 +95,7 @@ export default {
   data() {
     return {
       mostrarModal: false,
-      clienteEnEdicion: {},
+      productoEnEdicion: {},
     };
   },
   props: ["item"],
@@ -107,11 +107,11 @@ export default {
   },
   methods: {
     copiarClienteEdicion(item) {
-      this.clienteEnEdicion = item;
+      this.productoEnEdicion = item;
     },
-    submitFormulario(clienteEnEdicion) {
+    submitFormulario(productoEnEdicion) {
       this.$store
-        .dispatch("actualizarCliente", clienteEnEdicion)
+        .dispatch("actualizarCliente", productoEnEdicion)
         .then(() => {})
         .catch((err) => {
           console.log(err);
