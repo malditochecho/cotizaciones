@@ -14,6 +14,9 @@ export default {
   obtenerTodosLosClientes() {
     return apiClient.get("Cliente/");
   },
+  // obtenerCliente(id) {
+  //   return apiClient.get(`Cliente/${id}/`);
+  // },
   guardarClienteNuevo(cliente) {
     return apiClient.post("Cliente/", cliente);
   },
@@ -23,10 +26,30 @@ export default {
   actualizarCliente(cliente) {
     return apiClient.patch(`Cliente/${cliente.id}/`, cliente);
   },
-  // obtenerCliente(id) {
-  //   return apiClient.get(`Cliente/${id}/`);
-  // },
-  // crearCliente(cliente) {
-  //   return apiClient.post("Cliente/", cliente);
-  // },
+  // servicios
+  obtenerTodosLosServicios() {
+    return apiClient.get("Servicio/");
+  },
+  guardarServicioNuevo(servicio) {
+    return apiClient.post("Servicio/", servicio);
+  },
+  eliminarServicio(id) {
+    return apiClient.delete(`Servicio/${id}/`);
+  },
+  actualizarServicio(servicio) {
+    return apiClient.patch(`Servicio/${servicio.id}/`, servicio);
+  },
+  // productos
+  obtenerTodosLosProductos() {
+    return apiClient.get("Producto/");
+  },
+  guardarProductoNuevo(producto) {
+    return apiClient.post("Producto/", producto);
+  },
+  eliminarProducto(id) {
+    return apiClient.delete(`Producto/${id}/`);
+  },
+  actualizarProducto(producto) {
+    return apiClient.patch(`Producto/${producto.id}/`, producto);
+  },
 };

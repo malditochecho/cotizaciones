@@ -1,76 +1,67 @@
 <template>
   <div class="p-5">
-    <h1>Servicios</h1>
+    <h1>Servicios <CrearServicioModal /></h1>
     <b-table
-      :id="servicios.id"
+      :id="listaServicios.id"
       bordered
       small
       head-variant="dark"
       hover
-      :items="servicios"
+      :items="listaServicios"
       :fields="fields"
     >
-      <template v-slot:cell(editar)="{ item }">
-        <!-- nick es a la columna a la cual se va a aplicar, y item es un nombre q se va a usar para llamarlo en la sgte linea -->
-        <b-button @click="editarServicio(item)">Editar</b-button>
-        <!-- item es equivalente a un elemento de items -->
-      </template>
-
-      <!-- A virtual composite column -->
-      <template v-slot:cell(eliminar)="{ item }">
-        <b-button @click="eliminarServicio(item)">Eliminar</b-button>
+      <template v-slot:cell(Acciones)="{ item }">
+        <b-row>
+          <b-col><EditarServicioModal :item="item"/></b-col>
+          <b-col>
+            <b-button @click="eliminarServicio(item)" variant="danger" block>
+              Eliminar
+            </b-button>
+          </b-col>
+        </b-row>
       </template>
     </b-table>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import { mapState } from "vuex";
+import CrearServicioModal from "@/components/Servicios/CrearServicioModal.vue";
+import EditarServicioModal from "@/components/Servicios/EditarServicioModal.vue";
 
 export default {
-  name: "ListarServicios",
+  components: {
+    CrearServicioModal,
+    EditarServicioModal,
+  },
   data() {
     return {
-      servicios: [],
-      fields: [
-        "id",
-        "nombre",
-        "descripcion",
-        "valorMetroCuadrado",
-        { key: "editar", label: "" },
-        { key: "eliminar", label: "" },
-      ],
+      fields: ["id", "nombre", "descripcion", "valorMetroCuadrado", "Acciones"],
     };
   },
+  computed: {
+    ...mapState(["listaServicios", "modoEditando"]),
+  },
   mounted: function() {
-    this.listarServicios();
+    this.obtenerTodosLosServicios();
   },
   methods: {
-    listarServicios: function() {
-      axios.get("http://localhost:8000/api/Servicio/").then(
-        (response) => {
-          this.servicios = response.data;
-          console.log("API ok!");
-          console.log("Servicios listados exitosamente.");
-        },
-        (error) => {
-          console.log("API con error: ".concat(error));
-        }
-      );
+    obtenerTodosLosServicios() {
+      this.$store
+        .dispatch("obtenerTodosLosServicios")
+        .then(() => {})
+        .catch((err) => {
+          console.log(err);
+        });
     },
-    eliminarServicio: function(item) {
-      console.log("eliminando servicio " + item.empresa);
-      axios
-        .delete(item.url)
-        .then((response) => console.log("Status: " + response.status))
-        .catch((error) => console.log(error));
+    eliminarServicio(servicio) {
+      this.$store
+        .dispatch("eliminarServicio", servicio.id)
+        .then(() => {})
+        .catch((err) => {
+          console.log(err);
+        });
     },
-    // editarServicio: function(item) {
-    //   console.log("editando servicio " + item.empresa);
-    //   this.;
-    // },
   },
 };
 </script>
-
-<style></style>

@@ -6,23 +6,6 @@
         sm="10"
         md="8"
         offset-md="2"
-        lg="6"
-        offset-lg="3"
-        xl="4"
-        offset-xl="4"
-      >
-        <CrearServicio />
-      </b-col>
-    </b-row>
-
-    <hr />
-
-    <b-row>
-      <b-col
-        xs="12"
-        sm="10"
-        md="8"
-        offset-md="2"
         lg="8"
         offset-lg="2"
         xl="8"
@@ -35,14 +18,27 @@
 </template>
 
 <script>
-import CrearServicio from "@/components/Servicios/CrearServicio.vue";
+// import CrearServicio from "@/components/Servicios/CrearServicio.vue";
 import ListarServicios from "@/components/Servicios/ListarServicios.vue";
 
 export default {
   name: "MantenedorServicios",
   components: {
-    CrearServicio,
+    // CrearServicio,
     ListarServicios,
+  },
+  mounted: function() {
+    this.obtenerTodosLosServicios();
+  },
+  methods: {
+    obtenerTodosLosServicios() {
+      this.$store
+        .dispatch("obtenerTodosLosServicios")
+        .then(() => {})
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 };
 </script>
