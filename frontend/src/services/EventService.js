@@ -52,4 +52,8 @@ export default {
   actualizarProducto(producto) {
     return apiClient.patch(`Producto/${producto.id}/`, producto);
   },
+  // cotizaciones
+  obtenerCotizaciones() {
+    return apiClient.get("CotizacionGET/");
+  },
 };

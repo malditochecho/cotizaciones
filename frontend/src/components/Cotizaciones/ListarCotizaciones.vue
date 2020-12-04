@@ -31,10 +31,10 @@ export default {
       cotizaciones: [],
       fields: [
         "id",
-        "empresa.empresa",
-        "servicio.nombre",
+        "empresa",
+        "servicio",
         "metrosCuadrados",
-        "producto.producto",
+        "producto",
         "cantidadProducto",
         { key: "editar", label: "" },
         { key: "eliminar", label: "" },

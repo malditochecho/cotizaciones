@@ -2,63 +2,32 @@
   <div class="p-5">
     <h1>Nueva cotizacion</h1>
     <b-form @submit="guardarCotizacion">
-      <!-- Nombre empresa -->
+      <!-- Seleccionar empresa -->
       <b-form-group
         id="input-group-1"
-        label-for="input-1"
         label="Cliente"
+        label-for="input-2"
         description=""
       >
         <b-form-select
-          v-model="idClienteSeleccionado"
-          :options="listaNombreClientes"
+          :v-model="listaClientes"
+          :options="listaClientes.nombre"
         ></b-form-select>
       </b-form-group>
 
-      <!-- Servicio -->
-      <b-form-group
-        id="input-group-1"
-        label-for="input-1"
-        label="Servicio"
-        description=""
-      >
-        <b-form-select
-          v-model="idServicioSeleccionado"
-          :options="listaNombreServicios"
-        ></b-form-select>
-      </b-form-group>
-
-      <!-- Metros cuadrados -->
-      <b-form-group
-        id="input-group-1"
-        label-for="input-1"
-        label="Metros cuadrados"
-        description=""
-      >
-        <b-form-input v-model="metrosCuadrados"></b-form-input>
-      </b-form-group>
-
-      <!-- Productos seleccionados -->
-      <b-form-group
-        id="input-group-1"
-        label-for="input-1"
-        label="Producto"
-        description=""
-      >
-        <b-form-select
-          v-model="idProductoSeleccionado"
-          :options="listaNombreProductos"
-        ></b-form-select>
-      </b-form-group>
-
-      <!-- Cantidad de producto -->
-      <b-form-group
-        id="input-group-1"
-        label-for="input-1"
-        label="Cantidad de producto"
-        description=""
-      >
-        <b-form-input v-model="cantidadProducto"></b-form-input>
+      <!-- Lista de servicios agregados -->
+      <b-form-group id="input-group-2" label="Servicios" label-for="input-2">
+        <b-table
+          thead-class="d-none"
+          :fields="fields"
+          :items="serviciosSeleccionados"
+          small
+          bordered
+        ></b-table>
+        <template v-slot:cell(acciones)="{ item }">
+          asdasd
+          <b-button @click="removerServicio(item)">Remover</b-button>
+        </template>
       </b-form-group>
 
       <b-button type="submit" variant="success">Guardar</b-button>
@@ -72,11 +41,34 @@ import { mapState, mapGetters } from "vuex";
 export default {
   data: function() {
     return {
-      metrosCuadrados: "",
-      cantidadProducto: "",
-      idClienteSeleccionado: "",
-      idServicioSeleccionado: "",
-      idProductoSeleccionado: "",
+      fields: [
+        {
+          id: 0,
+          key: "nombre",
+          sortable: true,
+          label: "Nombre",
+        },
+        {
+          id: 1,
+          key: "cantidad",
+          sortable: true,
+          label: "Cantidad",
+        },
+        {
+          id: 2,
+          key: "acciones",
+        },
+      ],
+      serviciosSeleccionados: [
+        {
+          nombre: "mantencion",
+          cantidad: 3,
+        },
+        {
+          nombre: "aseo",
+          cantidad: 2,
+        },
+      ],
     };
   },
   computed: {
@@ -105,6 +97,16 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+    },
+    removerServicio(servicio) {
+      const index = this.serviciosSeleccionados.findIndex((element) => {
+        element.id == servicio.id;
+      });
+      this.serviciosSeleccionados.forEach((element) => {
+        if (element.id == servicio.id) {
+          this.serviciosSeleccionados.splice(index, 1);
+        }
+      });
     },
   },
 };

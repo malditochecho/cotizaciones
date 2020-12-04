@@ -91,6 +91,10 @@ export default new Vuex.Store({
         }
       });
     },
+    // mutations de cotizaciones
+    OBTENER_TODAS_LAS_COTIZACIONES(state, cotizacion) {
+      state.listaCotizaciones = cotizacion.data;
+    },
   },
   actions: {
     // actions de clientes
@@ -154,6 +158,12 @@ export default new Vuex.Store({
     actualizarProducto({ commit }, producto) {
       return EventService.actualizarProducto(producto).then(() => {
         commit("ACTUALIZAR_PRODUCTO", producto);
+      });
+    },
+    // actions de cotizaciones
+    obtenerCotizaciones({ commit }) {
+      return EventService.obtenerCotizaciones().then((response) => {
+        commit("OBTENER_TODAS_LAS_COTIZACIONES", response);
       });
     },
   },

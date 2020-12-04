@@ -20,12 +20,6 @@
           </b-col>
         </b-row>
       </template>
-
-      <!-- <template v-slot:cell(eliminar)="{ item }">
-        <b-button @click="eliminarCliente(item)" variant="danger"
-          >Eliminar</b-button
-        >
-      </template> -->
     </b-table>
   </div>
 </template>

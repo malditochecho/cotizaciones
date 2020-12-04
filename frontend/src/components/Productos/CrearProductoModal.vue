@@ -91,9 +91,11 @@ export default {
   },
   methods: {
     submitFormulario(productoNuevo) {
-      this.$store.dispatch("guardarProductoNuevo", productoNuevo).catch((err) => {
-        console.log(err);
-      });
+      this.$store
+        .dispatch("guardarProductoNuevo", productoNuevo)
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };

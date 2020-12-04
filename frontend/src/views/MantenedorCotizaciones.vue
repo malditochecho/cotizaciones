@@ -61,7 +61,7 @@ export default {
     },
     obtenerClientes() {
       this.$store
-        .dispatch("obtenerClientes")
+        .dispatch("obtenerTodosLosClientes")
         .then(() => {})
         .catch((err) => {
           console.log(err);
@@ -69,7 +69,7 @@ export default {
     },
     obtenerProductos() {
       this.$store
-        .dispatch("obtenerProductos")
+        .dispatch("obtenerTodosLosProductos")
         .then(() => {})
         .catch((err) => {
           console.log(err);
@@ -77,7 +77,7 @@ export default {
     },
     obtenerServicios() {
       this.$store
-        .dispatch("obtenerServicios")
+        .dispatch("obtenerTodosLosServicios")
         .then(() => {})
         .catch((err) => {
           console.log(err);

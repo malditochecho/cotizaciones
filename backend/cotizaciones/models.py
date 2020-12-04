@@ -31,21 +31,21 @@ class Producto(models.Model):
 
 
 class Cotizacion(models.Model):
-    servicios = models.ManyToManyField(Servicio, blank=True)
     empresa = models.ForeignKey(Cliente, on_delete=models.CASCADE, verbose_name='Cliente')
 
-    # servicio = models.ForeignKey(Servicio, on_delete=models.CASCADE, null=True)
-    metrosCuadrados = models.SmallIntegerField(verbose_name='Metros cuadrados', null=True, blank=True)
+    servicios = models.ManyToManyField(Servicio, through='ServiciosAgregados')
 
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, null=True)
     cantidadProducto = models.SmallIntegerField(verbose_name='Cantidad', null=True, blank=True)
-    
-    # valorNeto = (self.valorMetroCuadrado * self.metrosCuadrados) + (self.valorProducto * self.cantidadProducto)
-    # iva = self.valorNeto * 0.19
-    # total = self.valorNeto + self.iva
 
     def __str__(self):
         return 'Folio ' + str(self.id)
+
+
+class ServiciosAgregados(models.Model):
+    servicio = models.ForeignKey(Servicio, on_delete=models.CASCADE)
+    cotizacion = models.ForeignKey(Cotizacion, on_delete=models.CASCADE)
+    cantidad = models.SmallIntegerField()
 
 
 # rm -rf db.sqlite3

@@ -35,14 +35,14 @@ class ProductoSerializer(serializers.HyperlinkedModelSerializer):
 class CotizacionSerializerGet(serializers.ModelSerializer):
     class Meta:
         model = models.Cotizacion
-        fields = ('id', 'empresa', 'servicios', 'metrosCuadrados', 'producto', 'cantidadProducto',)
+        fields = ('id', 'empresa', 'servicios', 'producto', 'cantidadProducto',)
         depth = 1
 
 
 class CotizacionSerializerPost(serializers.ModelSerializer):
     class Meta:
         model = models.Cotizacion
-        fields = ('id', 'empresa', 'servicios', 'metrosCuadrados', 'producto', 'cantidadProducto',)
+        fields = ('id', 'empresa', 'servicios', 'producto', 'cantidadProducto',)
 
 
 """
