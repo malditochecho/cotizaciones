@@ -17,6 +17,7 @@ export default new Vuex.Store({
     listaProductos: [],
     listaServicios: [],
     listaNombresClientes: [],
+    serviciosSeleccionados: [],
   },
   mutations: {
     // mutations de clientes
@@ -95,6 +96,9 @@ export default new Vuex.Store({
     OBTENER_TODAS_LAS_COTIZACIONES(state, cotizacion) {
       state.listaCotizaciones = cotizacion.data;
     },
+    SELECCIONAR_SERVICIOS(state, listaServicios) {
+      state.serviciosSeleccionados = listaServicios;
+    },
   },
   actions: {
     // actions de clientes
@@ -166,6 +170,35 @@ export default new Vuex.Store({
         commit("OBTENER_TODAS_LAS_COTIZACIONES", response);
       });
     },
+    seleccionarServicios({ commit }, listaServicios) {
+      commit("SELECCIONAR_SERVICIOS", listaServicios);
+    },
   },
-  getters: {},
+  getters: {
+    nombresClientes: (state) => {
+      const nombres = [];
+      let cliente = {};
+      nombres.push({ value: null, text: "Seleccione un cliente" });
+      state.listaClientes.forEach((element) => {
+        cliente = {
+          value: element.id,
+          text: element.empresa,
+        };
+        nombres.push(cliente);
+      });
+      return nombres;
+    },
+    nombresServicios: (state) => {
+      const servicios = [];
+      let servicio = {};
+      state.listaServicios.forEach((element) => {
+        servicio = {
+          value: element,
+          text: element.nombre,
+        };
+        servicios.push(servicio);
+      });
+      return servicios;
+    },
+  },
 });

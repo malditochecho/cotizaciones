@@ -32,17 +32,43 @@ class ProductoSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url', 'id', 'producto', 'marca', 'fabricante', 'valorUnidad',)
 
 
-class CotizacionSerializerGet(serializers.ModelSerializer):
+class CotizacionSerializerGET(serializers.ModelSerializer):
+    servicios = ServicioSerializer(many=True, read_only=False)
+
     class Meta:
         model = models.Cotizacion
-        fields = ('id', 'empresa', 'servicios', 'producto', 'cantidadProducto',)
+        fields = ('id', 'empresa', 'servicios', 'producto', 'cantidadProducto')
         depth = 1
 
 
-class CotizacionSerializerPost(serializers.ModelSerializer):
+class CotizacionSerializerPOST(serializers.ModelSerializer):
+    servicios = ServicioSerializer(many=True, read_only=True)
+    
     class Meta:
         model = models.Cotizacion
         fields = ('id', 'empresa', 'servicios', 'producto', 'cantidadProducto',)
+
+
+class CotizaSerializer(serializers.ModelSerializer):    
+    class Meta:
+        model = models.Cotiza
+        fields = ('id', 'empresa', 'servicios')
+        depth = 2
+
+
+class CotizaServiciosSerializerPOST(serializers.ModelSerializer):    
+    class Meta:
+        model = models.CotizaServicios
+        fields = ('id', 'cotizacion', 'servicio', 'cantidad')
+        depth = 0
+
+
+class CotizaServiciosSerializerGET(serializers.ModelSerializer):    
+    class Meta:
+        model = models.CotizaServicios
+        fields = ('id', 'cotizacion', 'servicio', 'cantidad')
+        depth = 2
+
 
 
 """

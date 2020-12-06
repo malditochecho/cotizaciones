@@ -10,66 +10,50 @@
         description=""
       >
         <b-form-select
-          :v-model="listaClientes"
-          :options="listaClientes.nombre"
+          v-model="seleccionado"
+          :options="nombresClientes"
+          placeholder="Seleccione un cliente"
         ></b-form-select>
       </b-form-group>
 
       <!-- Lista de servicios agregados -->
       <b-form-group id="input-group-2" label="Servicios" label-for="input-2">
         <b-table
-          thead-class="d-none"
           :fields="fields"
           :items="serviciosSeleccionados"
           small
           bordered
         ></b-table>
-        <template v-slot:cell(acciones)="{ item }">
-          asdasd
-          <b-button @click="removerServicio(item)">Remover</b-button>
+        <template v-slot:cell(cantidad)>
+          <!-- Cantnidad -->
+          <b-input v-model="cantidadServicio"></b-input>
         </template>
       </b-form-group>
 
-      <b-button type="submit" variant="success">Guardar</b-button>
+      <!-- boton agregar servicio -->
+      <SeleccionarServicioModal />
+      <br />
+
+      <!-- boton guardar cotizacoin -->
+      <b-button type="submit" variant="success">Guardar cotizacion</b-button>
     </b-form>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from "vuex";
+import SeleccionarServicioModal from "@/components/Cotizaciones/SeleccionarServicioModal.vue";
 
 export default {
   data: function() {
     return {
-      fields: [
-        {
-          id: 0,
-          key: "nombre",
-          sortable: true,
-          label: "Nombre",
-        },
-        {
-          id: 1,
-          key: "cantidad",
-          sortable: true,
-          label: "Cantidad",
-        },
-        {
-          id: 2,
-          key: "acciones",
-        },
-      ],
-      serviciosSeleccionados: [
-        {
-          nombre: "mantencion",
-          cantidad: 3,
-        },
-        {
-          nombre: "aseo",
-          cantidad: 2,
-        },
-      ],
+      fields: ["id", "nombre", "cantidad"],
+      seleccionado: null,
+      cantidadServicio: null,
     };
+  },
+  components: {
+    SeleccionarServicioModal,
   },
   computed: {
     ...mapState([
@@ -77,13 +61,16 @@ export default {
       "listaClientes",
       "listaProductos",
       "listaServicios",
+      "serviciosSeleccionados",
     ]),
     ...mapGetters([
       "listaNombreClientes",
       "listaNombreProductos",
       "listaNombreServicios",
+      "nombresClientes",
     ]),
   },
+  mounted: function() {},
   methods: {
     guardarCotizacion() {
       this.$store

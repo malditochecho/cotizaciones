@@ -30,10 +30,11 @@ class Producto(models.Model):
         return self.producto
 
 
+# TABLA INTERMEDIA AUTOMATICA
 class Cotizacion(models.Model):
     empresa = models.ForeignKey(Cliente, on_delete=models.CASCADE, verbose_name='Cliente')
 
-    servicios = models.ManyToManyField(Servicio, through='ServiciosAgregados')
+    servicios = models.ManyToManyField(Servicio, blank=True)
 
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, null=True)
     cantidadProducto = models.SmallIntegerField(verbose_name='Cantidad', null=True, blank=True)
@@ -42,10 +43,22 @@ class Cotizacion(models.Model):
         return 'Folio ' + str(self.id)
 
 
-class ServiciosAgregados(models.Model):
+# TABLA INTERMEDIA MANUAL
+class Cotiza(models.Model):
+    empresa = models.ForeignKey(Cliente, on_delete=models.CASCADE, verbose_name='Cliente')
+    servicios = models.ManyToManyField(Servicio, through="CotizaServicios")
+    
+    def __str__(self):
+        return 'ID Cotizacion: ' + str(self.id)
+
+
+class CotizaServicios(models.Model):
+    cotizacion = models.ForeignKey(Cotiza, on_delete=models.CASCADE)
     servicio = models.ForeignKey(Servicio, on_delete=models.CASCADE)
-    cotizacion = models.ForeignKey(Cotizacion, on_delete=models.CASCADE)
-    cantidad = models.SmallIntegerField()
+    cantidad = models.IntegerField(verbose_name='Cantidad cotizada')
+
+    def __str__(self):
+        return 'Detalle: Cotizacion(' + str(self.cotizacion.id) + ') Servicio(' + str(self.servicio.id) + ') Cantidad(' + str(self.cantidad) + ')'
 
 
 # rm -rf db.sqlite3

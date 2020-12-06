@@ -23,16 +23,36 @@ class ProductoViewSet(viewsets.ModelViewSet):
     # permission_classes = [IsAuthenticated]
 
 
-class CotizacionViewSetGet(viewsets.ModelViewSet):
+class CotizacionViewSetGET(viewsets.ModelViewSet):
     queryset = models.Cotizacion.objects.all().order_by('-id')
-    serializer_class = serializers.CotizacionSerializerGet
+    serializer_class = serializers.CotizacionSerializerGET
     # permission_classes = [IsAuthenticated]
 
 
-class CotizacionViewSetPost(viewsets.ModelViewSet):
+class CotizacionViewSetPOST(viewsets.ModelViewSet):
     queryset = models.Cotizacion.objects.all()
-    serializer_class = serializers.CotizacionSerializerPost
+    serializer_class = serializers.CotizacionSerializerPOST
     # permission_classes = [IsAuthenticated]
+
+
+class CotizaViewSet(viewsets.ModelViewSet):
+    queryset = models.Cotiza.objects.all()
+    serializer_class = serializers.CotizaSerializer
+    # permission_classes = [IsAuthenticated]
+
+
+class CotizaServiciosViewSetGET(viewsets.ModelViewSet):
+    queryset = models.CotizaServicios.objects.all()
+    serializer_class = serializers.CotizaServiciosSerializerGET
+    # permission_classes = [IsAuthenticated]
+
+
+class CotizaServiciosViewSetPOST(viewsets.ModelViewSet):
+    queryset = models.CotizaServicios.objects.all()
+    serializer_class = serializers.CotizaServiciosSerializerPOST
+    # permission_classes = [IsAuthenticated]
+
+    
 
 
 def generarPDF():
