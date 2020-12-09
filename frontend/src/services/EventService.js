@@ -52,8 +52,22 @@ export default {
   actualizarProducto(producto) {
     return apiClient.patch(`Producto/${producto.id}/`, producto);
   },
-  // cotizaciones
+  // COTIZACIONES
+
   obtenerCotizaciones() {
     return apiClient.get("CotizacionGET/");
   },
+  /**
+   *  TABLA "MAESTRA"
+   * @param {*} cotizacion indica objeto a insertar en la BD tabla cotizaciones_cotiza
+   *   /api/Cotiza/
+   * se debe registrar la empresa (cliente) a la que se hará la cotización
+   */
+  guardarCotizacionNuevo(cotizacion) {
+    return apiClient.post("Cotiza/", cotizacion);
+  },
+  guardarCotizacionServiciosNuevo(cotizacioServicion) {
+    return apiClient.post("CotizaServiciosPOST/", cotizacioServicion);
+  }
+
 };

@@ -9,6 +9,7 @@ export default new Vuex.Store({
     clienteNuevo: {},
     servicioNuevo: {},
     productoNuevo: {},
+    cotizacionNuevo: {},
     clienteEnEdicion: {},
     servicioEnEdicion: {},
     productoEnEdicion: {},
@@ -20,6 +21,7 @@ export default new Vuex.Store({
     serviciosSeleccionados: [],
   },
   mutations: {
+
     // mutations de clientes
     OBTENER_TODOS_LOS_CLIENTES(state, clientes) {
       state.listaClientes = clientes.data;
@@ -44,6 +46,7 @@ export default new Vuex.Store({
         }
       });
     },
+
     // mutations de servicios
     OBTENER_TODOS_LOS_SERVICIOS(state, servicios) {
       state.listaServicios = servicios.data;
@@ -68,6 +71,7 @@ export default new Vuex.Store({
         }
       });
     },
+
     // mutations de productos
     OBTENER_TODOS_LOS_PRODUCTOS(state, productos) {
       state.listaProductos = productos.data;
@@ -99,6 +103,9 @@ export default new Vuex.Store({
     SELECCIONAR_SERVICIOS(state, listaServicios) {
       state.serviciosSeleccionados = listaServicios;
     },
+    GUARDAR_COTIZACION_NUEVO(state, cotizacion) {
+      state.cotizacionNuevo = cotizacion;
+    }
   },
   actions: {
     // actions de clientes
@@ -173,6 +180,18 @@ export default new Vuex.Store({
     seleccionarServicios({ commit }, listaServicios) {
       commit("SELECCIONAR_SERVICIOS", listaServicios);
     },
+    /**
+     * 
+     * @param {*} commit {proporcionado por Vuex- Cotizacion (cotiza)} 
+     * @param {*} cotizacion  Cotizacion (cotiza)
+     */
+    guardarCotizacion({ commit }, cotizacion) {
+      return EventService.guardarCotizacionNuevo(cotizacion).then((response) => {
+        commit("GUARDAR_COTIZACION_NUEVO", response)
+      });
+    }
+
+
   },
   getters: {
     nombresClientes: (state) => {

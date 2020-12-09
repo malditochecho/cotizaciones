@@ -1,7 +1,7 @@
 <template>
   <div class="p-5">
     <h1>Nueva cotizacion</h1>
-    <b-form @submit="guardarCotizacion">
+    <b-form @submit.prevent="guardarCotizacion">
       <!-- Seleccionar empresa -->
       <b-form-group
         id="input-group-1"
@@ -45,7 +45,7 @@ import { mapState, mapGetters } from "vuex";
 import SeleccionarServicioModal from "@/components/Cotizaciones/SeleccionarServicioModal.vue";
 
 export default {
-  data: function() {
+  data: function () {
     return {
       fields: ["id", "nombre", "cantidad"],
       seleccionado: null,
@@ -70,10 +70,21 @@ export default {
       "nombresClientes",
     ]),
   },
-  mounted: function() {},
+  mounted: function () {},
   methods: {
     guardarCotizacion() {
+      //console.log("Metodo " + this.serviciosSeleccionados[0].nombre);
       this.$store
+        .dispatch("guardarCotizacion", {
+          'empresa': {
+            
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      /* this.$store
         .dispatch("guardarCotizacion", {
           empresa: this.actualizaCliente.empresa,
           contacto: this.actualizaCliente.contacto,
@@ -83,7 +94,7 @@ export default {
         .then(this.limpiarFormulario())
         .catch((err) => {
           console.log(err);
-        });
+        }); */
     },
     removerServicio(servicio) {
       const index = this.serviciosSeleccionados.findIndex((element) => {
