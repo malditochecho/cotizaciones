@@ -46,7 +46,7 @@ class Cotizacion(models.Model):
 # TABLA INTERMEDIA MANUAL
 class Cotiza(models.Model):
     empresa = models.ForeignKey(Cliente, on_delete=models.CASCADE, verbose_name='Cliente')
-    servicios = models.ManyToManyField(Servicio, through="CotizaServicios")
+    servicios = models.ManyToManyField(Servicio, through="CotizaServicios", blank=True)
     
     def __str__(self):
         return 'ID Cotizacion: ' + str(self.id)

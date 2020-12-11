@@ -53,7 +53,7 @@ class CotizaSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Cotiza
         fields = ('id', 'empresa', 'servicios')
-        depth = 2
+        depth = 0
 
 
 class CotizaServiciosSerializerPOST(serializers.ModelSerializer):    

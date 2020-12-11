@@ -70,31 +70,21 @@ export default {
       "nombresClientes",
     ]),
   },
-  mounted: function () {},
+  mounted: function () {}, 
   methods: {
     guardarCotizacion() {
       //console.log("Metodo " + this.serviciosSeleccionados[0].nombre);
+
+      console.log('cliente seleccionado: ' + this.seleccionado + ' y servicios: ' + this.serviciosSeleccionados[1].nombre)
+
       this.$store
         .dispatch("guardarCotizacion", {
-          'empresa': {
-            
-          }
+          empresa:  this.seleccionado
         })
+        .then( (response) => {console.log(response.data)})
         .catch((err) => {
           console.log(err);
         });
-
-      /* this.$store
-        .dispatch("guardarCotizacion", {
-          empresa: this.actualizaCliente.empresa,
-          contacto: this.actualizaCliente.contacto,
-          telefonoContacto: this.actualizaCliente.telefonoContacto,
-          correoContacto: this.actualizaCliente.correoContacto,
-        })
-        .then(this.limpiarFormulario())
-        .catch((err) => {
-          console.log(err);
-        }); */
     },
     removerServicio(servicio) {
       const index = this.serviciosSeleccionados.findIndex((element) => {
