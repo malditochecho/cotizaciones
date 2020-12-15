@@ -1,6 +1,7 @@
 <template>
   <div class="p-5">
     <h1>Cotizaciones</h1>
+    {{ metodoDummy(listaCotizaciones) }}
     <b-table
       :id="listaCotizaciones.id"
       bordered
@@ -54,6 +55,9 @@ export default {
           console.log(err);
         });
     },
+    metodoDummy(listaCotizaciones) {
+      console.log(listaCotizaciones)
+    }
   },
 };
 </script>

@@ -19,6 +19,7 @@ export default new Vuex.Store({
     listaServicios: [],
     listaNombresClientes: [],
     serviciosSeleccionados: [],
+    listaCotizacionesServicios: []
   },
   mutations: {
 
@@ -177,6 +178,11 @@ export default new Vuex.Store({
         commit("OBTENER_TODAS_LAS_COTIZACIONES", response);
       });
     },
+    obtenerCotizacionesServicios({ commit }) {
+      return EventService.obtenerCotizacionesServiciosGET().then((response) => {
+        commit("OBTENER_TODAS_LAS_COTIZACIONES_SERVICIOS", response);
+      });
+    },
     seleccionarServicios({ commit }, listaServicios) {
       commit("SELECCIONAR_SERVICIOS", listaServicios);
     },
@@ -187,6 +193,7 @@ export default new Vuex.Store({
      */
     guardarCotizacion({ commit }, cotizacion) {
       return EventService.guardarCotizacionNuevo(cotizacion).then((response) => {
+        console.log('GUARDA COTI')
         commit("GUARDAR_COTIZACION_NUEVO", response)
       });
     }

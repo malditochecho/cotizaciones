@@ -54,8 +54,15 @@ export default {
   },
   // COTIZACIONES
 
+  //OBTIENE DATOS DE TABLA COTIZACION
   obtenerCotizaciones() {
-    return apiClient.get("CotizacionGET/");
+    return apiClient.get("Cotiza/");
+  },
+  obtenerCotizacionesServiciosGET() {
+    return apiClient.get("CotizaServiciosGET/");
+  },
+  obtenerCotizacionesServiciosPOST() {
+    return apiClient.get("CotizaServiciosPOST/");
   },
   /**
    *  TABLA "MAESTRA"

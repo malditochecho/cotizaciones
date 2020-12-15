@@ -66,7 +66,7 @@ class CotizaServiciosSerializerPOST(serializers.ModelSerializer):
 class CotizaServiciosSerializerGET(serializers.ModelSerializer):    
     class Meta:
         model = models.CotizaServicios
-        fields = ('id', 'cotizacion', 'servicio', 'cantidad')
+        fields = ('id', 'cotizacion', 'servicio','cantidad')
         depth = 2
 
 

@@ -81,7 +81,7 @@ export default {
         .dispatch("guardarCotizacion", {
           empresa:  this.seleccionado
         })
-        .then( (response) => {console.log(response.data)})
+        .then()
         .catch((err) => {
           console.log(err);
         });
